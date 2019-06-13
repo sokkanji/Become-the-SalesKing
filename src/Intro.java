@@ -14,8 +14,8 @@ public class Intro extends JFrame {
 	
 	private Image screenImage;
 	private Graphics screenGraphic; //전체화면에 대한 두 인스턴스
-	private Image IntroBackground=Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg"); 
-	
+	private Image Background=Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg"); 
+
 	//나가기버튼 이미지
 	private ImageIcon End=new ImageIcon("images/End.png");
 	private ImageIcon OnEnd=new ImageIcon("images/OnEnd.png");
@@ -30,10 +30,16 @@ public class Intro extends JFrame {
 	private ImageIcon AHowToPlaybtn = new ImageIcon("images/AfterHowToPlay.png");
 	private ImageIcon OnHowToPlaybtn = new ImageIcon("images/OnHowToPlay.png");
 	
+	//뒤로가기 버튼
+	public ImageIcon BBackbtn = new ImageIcon("images/BeforeBack.png");
+	public ImageIcon ABackbtn = new ImageIcon("images/AfterBack.png");
+	public ImageIcon OnBackbtn = new ImageIcon("images/OnBack.png");
+		
 	//나가기, 시작, 조작방법 버튼
 	private JButton Endbtn = new JButton(End);
 	private JButton Lbtn=new JButton(BStartbtn);
 	private JButton Rbtn=new JButton(BHowToPlaybtn);
+	private JButton Bbtn=new JButton(BBackbtn);
 	
 	Intro(){
 		setTitle("매출왕이 되자!!");
@@ -72,7 +78,6 @@ public class Intro extends JFrame {
 		Lbtn.setBorderPainted(false); 
 		Lbtn.setFocusPainted(false);
 		Lbtn.setContentAreaFilled(false); 
-		//Lbtn.addMouseListener(new MyMouse());
 		add(Lbtn);
 		
 		//<조작방법 버튼>
@@ -83,7 +88,34 @@ public class Intro extends JFrame {
 		Rbtn.setBorderPainted(false);
 		Rbtn.setFocusPainted(false);
 		Rbtn.setContentAreaFilled(false);
-		add(Rbtn);	
+		add(Rbtn);
+		Rbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Bbtn.setVisible(true); 
+				Lbtn.setVisible(false); // 시작버튼이 보이지 않게 됨
+				Rbtn.setVisible(false); // 조작버튼이 보이지 않게 됨
+				Background = Toolkit.getDefaultToolkit().createImage("images/HowToPlaybackground.jpg"); // 배경이미지 변경
+				Bbtn.setBounds(1050, 610, 180, 110); //버튼의 위치 및 크기 설정
+				Bbtn.setBorderPainted(false); 
+				Bbtn.setFocusPainted(false);
+				Bbtn.setContentAreaFilled(false); 
+				add(Bbtn);
+			} 
+		}); 
+
+		//#2 <뒤로가기버튼>
+		Bbtn.setPressedIcon(ABackbtn); //눌렀을 때의 이미지
+		Bbtn.setRolloverIcon(OnBackbtn); //이미지 위에 마우스 올렸을 때의 이미지 	
+		Bbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Bbtn.setVisible(false); 
+				Lbtn.setVisible(true);  // 시작버튼이 보임
+				Rbtn.setVisible(true);  
+				Background = Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg"); 
+			} 
+		});  
 	}
 
 	public void paint(Graphics g) { //GUI화면 중 제일 첫번째 화면을 그려주는 함수
@@ -94,9 +126,8 @@ public class Intro extends JFrame {
 	}
 	
 	public void screenDraw(Graphics g) {
-		g.drawImage(IntroBackground, 0, 0, null); //IntroBackground의 이미지를 (0,0)위치에 그려줌.
+		g.drawImage(Background, 0, 0, null); //Background의 이미지를 (0,0)위치에 그려줌.
 		paintComponents(g); //컴포넌트 삽입
 		this.repaint(); //전체화면 이미지를 매 순간마다 그려줌, 프로그램 시작~종료까지 반복되며 화면에 그려줌.
 	}
-	
 }
