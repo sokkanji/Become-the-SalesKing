@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -8,6 +9,7 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class Intro extends JFrame {
@@ -16,30 +18,29 @@ public class Intro extends JFrame {
 	private Graphics screenGraphic; //전체화면에 대한 두 인스턴스
 	private Image Background=Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg"); 
 
-	//나가기버튼 이미지
-	private ImageIcon End=new ImageIcon("images/End.png");
-	private ImageIcon OnEnd=new ImageIcon("images/OnEnd.png");
-	
+	//<나가기 버튼 이미지>
+	private ImageIcon End[] = {new ImageIcon("images/End.png"),
+								new ImageIcon("images/OnEnd.png")};
 	//시작버튼 이미지
-	private ImageIcon BStartbtn = new ImageIcon("images/BeforeStart.png");
-	private ImageIcon AStartbtn = new ImageIcon("images/AfterStart.png");
-	private ImageIcon OnStartbtn = new ImageIcon("images/OnStart.png");
-	
+	private ImageIcon Startbtn[] = {new ImageIcon("images/BeforeStart.png"), //ㅁ[0] 평상시, ㅁ[1] 마우스 올렸을 때, ㅁ[2] 마우스 누를 때
+									new ImageIcon("images/AfterStart.png"),
+									new ImageIcon("images/OnStart.png") };
 	//조작방법 이미지
-	private ImageIcon BHowToPlaybtn = new ImageIcon("images/BeforeHowToPlay.png");
-	private ImageIcon AHowToPlaybtn = new ImageIcon("images/AfterHowToPlay.png");
-	private ImageIcon OnHowToPlaybtn = new ImageIcon("images/OnHowToPlay.png");
-	
+	private ImageIcon HowToPlaybtn[] = {new ImageIcon("images/BeforeHowToPlay.png"),
+									    new ImageIcon("images/AfterHowToPlay.png"),
+									    new ImageIcon("images/OnHowToPlay.png")};
 	//뒤로가기 버튼
-	public ImageIcon BBackbtn = new ImageIcon("images/BeforeBack.png");
-	public ImageIcon ABackbtn = new ImageIcon("images/AfterBack.png");
-	public ImageIcon OnBackbtn = new ImageIcon("images/OnBack.png");
-		
+	public ImageIcon Backbtn[] = {new ImageIcon("images/BeforeBack.png"),
+								  new ImageIcon("images/AfterBack.png"),
+								  new ImageIcon("images/OnBack.png")};
 	//나가기, 시작, 조작방법 버튼
-	private JButton Endbtn = new JButton(End);
-	private JButton Lbtn=new JButton(BStartbtn);
-	private JButton Rbtn=new JButton(BHowToPlaybtn);
-	private JButton Bbtn=new JButton(BBackbtn);
+	private JButton Endbtn = new JButton(End[0]);
+	private JButton Lbtn=new JButton(Startbtn[0]);
+	private JButton Rbtn=new JButton(HowToPlaybtn[0]);
+	private JButton Bbtn=new JButton(Backbtn[0]);
+	
+	private JTextField Name = new JTextField(20);
+	private JTextField SName = new JTextField(20);
 	
 	Intro(){
 		setTitle("매출왕이 되자!!");
@@ -57,7 +58,7 @@ public class Intro extends JFrame {
 		setLayout(null); //버튼이나 라벨을 넣었을 때 제 위치에 설정하도록 해줌.
 		
 		//<종료버튼>
-		Endbtn.setRolloverIcon(OnEnd);
+		Endbtn.setRolloverIcon(End[1]);
 		Endbtn.setBounds(1250, 10, 100, 80);
 		Endbtn.setBorderPainted(false);
 		Endbtn.setFocusPainted(false);
@@ -71,18 +72,39 @@ public class Intro extends JFrame {
 		add(Endbtn); //버튼 부착
 		
 		//<시작버튼>
-		Lbtn.setPressedIcon(AStartbtn); //눌렀을 때의 이미지
-		Lbtn.setRolloverIcon(OnStartbtn); //이미지 위에 마우스 올렸을 때의 이미지 
+		Lbtn.setPressedIcon(Startbtn[1]); //눌렀을 때의 이미지
+		Lbtn.setRolloverIcon(Startbtn[2]); //이미지 위에 마우스 올렸을 때의 이미지 
 		
 		Lbtn.setBounds(350, 620, 220, 100); //버튼의 위치 및 크기 설정
 		Lbtn.setBorderPainted(false); 
 		Lbtn.setFocusPainted(false);
 		Lbtn.setContentAreaFilled(false); 
+		Lbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				Rbtn.setVisible(false); 
+				Lbtn.setVisible(false);
+				Background = Toolkit.getDefaultToolkit().createImage("images/Initbackground.jpg"); // 배경이미지 변경
+				Name.setFont(new Font("BOLD", Font.BOLD, 55));
+				Name.setBounds(570, 250, 400, 80);
+				add(Name);
+				Name.setVisible(true); 
+				/*Name.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						
+						JTextField t = (JTextField)e.getSource();
+					}
+				} );*/
+			}
+		});
 		add(Lbtn);
 		
+		
+		
 		//<조작방법 버튼>
-		Rbtn.setPressedIcon(AHowToPlaybtn);
-		Rbtn.setRolloverIcon(OnHowToPlaybtn);
+		Rbtn.setPressedIcon(HowToPlaybtn[1]);
+		Rbtn.setRolloverIcon(HowToPlaybtn[2]);
 
 		Rbtn.setBounds(810, 620, 220, 100);
 		Rbtn.setBorderPainted(false);
@@ -105,8 +127,8 @@ public class Intro extends JFrame {
 		}); 
 
 		//#2 <뒤로가기버튼>
-		Bbtn.setPressedIcon(ABackbtn); //눌렀을 때의 이미지
-		Bbtn.setRolloverIcon(OnBackbtn); //이미지 위에 마우스 올렸을 때의 이미지 	
+		Bbtn.setPressedIcon(Backbtn[1]); //눌렀을 때의 이미지
+		Bbtn.setRolloverIcon(Backbtn[2]); //이미지 위에 마우스 올렸을 때의 이미지 	
 		Bbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
