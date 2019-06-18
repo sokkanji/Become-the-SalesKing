@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -39,6 +40,7 @@ public class Intro extends JFrame {
 	private JButton Rbtn=new JButton(HowToPlaybtn[0]);
 	private JButton Bbtn=new JButton(Backbtn[0]);
 	
+	
 	private JTextField Name = new JTextField(20);
 	private JTextField SName = new JTextField(20);
 	
@@ -71,6 +73,9 @@ public class Intro extends JFrame {
 		});
 		add(Endbtn); //버튼 부착
 		
+		
+		
+		
 		//<시작버튼>
 		Lbtn.setPressedIcon(Startbtn[1]); //눌렀을 때의 이미지
 		Lbtn.setRolloverIcon(Startbtn[2]); //이미지 위에 마우스 올렸을 때의 이미지 
@@ -83,12 +88,17 @@ public class Intro extends JFrame {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Rbtn.setVisible(false); 
-				Lbtn.setVisible(false);
+				Lbtn.setVisible(false); //이형섭선생님께 여쭙기
 				Background = Toolkit.getDefaultToolkit().createImage("images/Initbackground.jpg"); // 배경이미지 변경
-				Name.setFont(new Font("BOLD", Font.BOLD, 55));
-				Name.setBounds(570, 250, 400, 80);
+				Name.setFont(new Font("BOLD", Font.BOLD, 50));
+				Name.setBounds(590, 250, 400, 80);
 				add(Name);
 				Name.setVisible(true); 
+				
+				add(SName);
+				SName.setFont(new Font("BOLD", Font.BOLD, 50));
+				SName.setBounds(590, 420, 400, 80);
+				SName.setVisible(true);
 				/*Name.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
@@ -138,6 +148,11 @@ public class Intro extends JFrame {
 				Background = Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg"); 
 			} 
 		});  
+	}
+
+	private void add(ImageIcon test2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public void paint(Graphics g) { //GUI화면 중 제일 첫번째 화면을 그려주는 함수
