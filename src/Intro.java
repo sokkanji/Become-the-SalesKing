@@ -1,11 +1,14 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.rmi.server.SocketSecurityException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,11 +37,17 @@ public class Intro extends JFrame {
 	public ImageIcon Backbtn[] = {new ImageIcon("images/BeforeBack.png"),
 								  new ImageIcon("images/AfterBack.png"),
 								  new ImageIcon("images/OnBack.png")};
+	
+	private ImageIcon Checkbtn[]= {new ImageIcon("images/BeforeCheck.png"),
+								   new ImageIcon("images/AfterCheck.png"),
+								   new ImageIcon("images/OnCheck.png")};
+	
 	//나가기, 시작, 조작방법 버튼
 	private JButton Endbtn = new JButton(End[0]);
 	private JButton Lbtn=new JButton(Startbtn[0]);
 	private JButton Rbtn=new JButton(HowToPlaybtn[0]);
 	private JButton Bbtn=new JButton(Backbtn[0]);
+	private JButton Cbtn=new JButton(Checkbtn[0]);
 	
 	
 	private JTextField Name = new JTextField(20);
@@ -73,13 +82,9 @@ public class Intro extends JFrame {
 		});
 		add(Endbtn); //버튼 부착
 		
-		
-		
-		
 		//<시작버튼>
 		Lbtn.setPressedIcon(Startbtn[1]); //눌렀을 때의 이미지
-		Lbtn.setRolloverIcon(Startbtn[2]); //이미지 위에 마우스 올렸을 때의 이미지 
-		
+		Lbtn.setRolloverIcon(Startbtn[2]); //이미지 위에 마우스 올렸을 때의 이미지
 		Lbtn.setBounds(350, 620, 220, 100); //버튼의 위치 및 크기 설정
 		Lbtn.setBorderPainted(false); 
 		Lbtn.setFocusPainted(false);
@@ -87,29 +92,43 @@ public class Intro extends JFrame {
 		Lbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
+				Background = Toolkit.getDefaultToolkit().createImage("images/Initbackground.jpg"); // 배경이미지 변경
 				Rbtn.setVisible(false); 
 				Lbtn.setVisible(false); //이형섭선생님께 여쭙기
-				Background = Toolkit.getDefaultToolkit().createImage("images/Initbackground.jpg"); // 배경이미지 변경
-				Name.setFont(new Font("BOLD", Font.BOLD, 50));
-				Name.setBounds(590, 250, 400, 80);
+				
+				//이름 입력
 				add(Name);
 				Name.setVisible(true); 
+				Name.setBounds(590, 250, 400, 80);
+				Name.setFont(new Font("BOLD", Font.BOLD, 50));
 				
-				add(SName);
-				SName.setFont(new Font("BOLD", Font.BOLD, 50));
-				SName.setBounds(590, 420, 400, 80);
-				SName.setVisible(true);
-				/*Name.addActionListener(new ActionListener() {
+				Cbtn.setPressedIcon(Checkbtn[1]); //눌렀을 때의 이미지
+				Cbtn.setRolloverIcon(Checkbtn[2]); //이미지 위에 마우스 올렸을 때의 이미지
+				Cbtn.setBounds(550, 620, 220, 100); //버튼의 위치 및 크기 설정
+				Cbtn.setBorderPainted(false); 
+				Cbtn.setFocusPainted(false);
+				Cbtn.setContentAreaFilled(false); 
+				add(Cbtn);
+
+				Cbtn.addActionListener(new ActionListener() {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						
-						JTextField t = (JTextField)e.getSource();
+						String name = Name.getText();
+						String sname = SName.getText();
 					}
-				} );*/
+				});
+				
+				//가게 이름 입력
+				add(SName);
+				SName.setVisible(true);
+				SName.setBounds(590, 420, 400, 80);
+				SName.setFont(new Font("BOLD", Font.BOLD, 50));
+					
 			}
 		});
-		add(Lbtn);
 		
+		
+		add(Lbtn);
 		
 		
 		//<조작방법 버튼>
@@ -146,13 +165,9 @@ public class Intro extends JFrame {
 				Lbtn.setVisible(true);  // 시작버튼이 보임
 				Rbtn.setVisible(true);  
 				Background = Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg"); 
+				
 			} 
 		});  
-	}
-
-	private void add(ImageIcon test2) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	public void paint(Graphics g) { //GUI화면 중 제일 첫번째 화면을 그려주는 함수
