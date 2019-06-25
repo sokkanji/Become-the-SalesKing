@@ -116,9 +116,9 @@ public class Intro extends JFrame {
 					@Override
 					public void mousePressed(MouseEvent e) {
 							String name = Name.getText();
-							//System.out.println(name);
+							System.out.println(name);
 							String sname = SName.getText();
-							//System.out.println(sname);
+							System.out.println(sname);
 							Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg"); 
 							Name.setVisible(false);
 							SName.setVisible(false);
@@ -132,10 +132,10 @@ public class Intro extends JFrame {
 							Nbtn.setContentAreaFilled(false); 
 							Nbtn.addMouseListener(new MouseAdapter() {
 								@Override
-								public void mousePressed(MouseEvent e) {
-									Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg"); 
-					
-								} });
+							public void mousePressed(MouseEvent e) {
+								Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg"); 
+								Nbtn.setVisible(false);
+							} });
 				} });
 				//가게 이름 입력
 				add(SName);
