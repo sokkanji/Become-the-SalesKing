@@ -85,13 +85,15 @@ public class Intro extends JFrame {
 		});
 		
 		//<시작버튼>
+		add(Lbtn);
 		Lbtn.setPressedIcon(Startbtn[1]);
 		Lbtn.setRolloverIcon(Startbtn[2]);
 		Lbtn.setBounds(350, 620, 220, 100); 
 		Lbtn.setBorderPainted(false); 
 		Lbtn.setFocusPainted(false);
 		Lbtn.setContentAreaFilled(false); 
-		add(Lbtn);
+		
+		
 		Lbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
@@ -112,17 +114,20 @@ public class Intro extends JFrame {
 				Cbtn.setFocusPainted(false);
 				Cbtn.setContentAreaFilled(false); 
 				add(Cbtn);
+				
 				Cbtn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
 							String name = Name.getText();
-							System.out.println(name);
+							//System.out.println(name);
 							String sname = SName.getText();
-							System.out.println(sname);
+							//System.out.println(sname);
 							Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg"); 
+							
 							Name.setVisible(false);
 							SName.setVisible(false);
 							Cbtn.setVisible(false);
+							
 							add(Nbtn);
 							Nbtn.setPressedIcon(Nextbtn[1]);
 							Nbtn.setRolloverIcon(Nextbtn[2]); 
@@ -130,6 +135,7 @@ public class Intro extends JFrame {
 							Nbtn.setBorderPainted(false); 
 							Nbtn.setFocusPainted(false);
 							Nbtn.setContentAreaFilled(false); 
+							
 							Nbtn.addMouseListener(new MouseAdapter() {
 								@Override
 							public void mousePressed(MouseEvent e) {
@@ -137,6 +143,7 @@ public class Intro extends JFrame {
 								Nbtn.setVisible(false);
 							} });
 				} });
+				
 				//가게 이름 입력
 				add(SName);
 				SName.setVisible(true);
@@ -147,19 +154,21 @@ public class Intro extends JFrame {
 		//<조작방법 버튼>
 		Rbtn.setPressedIcon(HowToPlaybtn[1]);
 		Rbtn.setRolloverIcon(HowToPlaybtn[2]);
-
 		Rbtn.setBounds(810, 620, 220, 100);
 		Rbtn.setBorderPainted(false);
 		Rbtn.setFocusPainted(false);
 		Rbtn.setContentAreaFilled(false);
 		add(Rbtn);
+		
 		Rbtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mousePressed(MouseEvent e) {
 				Bbtn.setVisible(true); 
 				Lbtn.setVisible(false); 
 				Rbtn.setVisible(false); 
+				
 				Background = Toolkit.getDefaultToolkit().createImage("images/HowToPlaybackground.jpg"); 
+				
 				Bbtn.setBounds(1050, 610, 180, 110); 
 				Bbtn.setBorderPainted(false); 
 				Bbtn.setFocusPainted(false);
@@ -182,7 +191,6 @@ public class Intro extends JFrame {
 		});  	
 	}
 	
-
 	public void paint(Graphics g) { //GUI화면 중 제일 첫번째 화면을 그려주는 함수
 		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); //ScreenImage에 1200X700의 이미지를 넣어줌
 		screenGraphic = screenImage.getGraphics(); //겟그래픽을 이용해서 스크린그래픽을 얻어옴 
