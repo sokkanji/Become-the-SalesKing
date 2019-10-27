@@ -1,20 +1,17 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
 
 @SuppressWarnings("serial")
 public class Intro extends JFrame {
@@ -25,7 +22,7 @@ public class Intro extends JFrame {
 
 	//<나가기 버튼 이미지>
 	private ImageIcon End[] = {new ImageIcon("images/End.png"),
-								new ImageIcon("images/OnEnd.png")};
+							   new ImageIcon("images/OnEnd.png")};
 	//시작버튼 이미지
 	private ImageIcon Startbtn[] = {new ImageIcon("images/BeforeStart.png"), //ㅁ[0] 평상시, ㅁ[1] 마우스 올렸을 때, ㅁ[2] 마우스 누를 때
 									new ImageIcon("images/AfterStart.png"),
@@ -47,13 +44,21 @@ public class Intro extends JFrame {
 								   new ImageIcon("images/BNext.png"),
 								   new ImageIcon("images/OnNext.png")};
 	
+	ImageIcon monster[] = {new ImageIcon("images/monster1.png"),
+								  new ImageIcon("images/monster2.png"),
+								  new ImageIcon("images/monster3.png"),
+								  new ImageIcon("images/monster4.png"),
+								  new ImageIcon("images/monster5.png")};
+	
 	//나가기, 시작, 조작방법 버튼
 	private JButton Endbtn = new JButton(End[0]);
-	private JButton Lbtn=new JButton(Startbtn[0]);
-	private JButton Rbtn=new JButton(HowToPlaybtn[0]);
-	private JButton Bbtn=new JButton(Backbtn[0]);
-	private JButton Cbtn=new JButton(Checkbtn[0]);
-	private JButton Nbtn=new JButton(Nextbtn[0]);
+	private JButton Lbtn = new JButton(Startbtn[0]);
+	private JButton Rbtn = new JButton(HowToPlaybtn[0]);
+	private JButton Bbtn = new JButton(Backbtn[0]);
+	private JButton Cbtn = new JButton(Checkbtn[0]);
+	private JButton Nbtn = new JButton(Nextbtn[0]);
+	
+	private JLabel monsterLa = new JLabel(monster[0]);
 	
 	private JTextField Name = new JTextField(20);
 	private JTextField SName = new JTextField(20);
@@ -115,13 +120,12 @@ public class Intro extends JFrame {
 				Cbtn.setContentAreaFilled(false); 
 				add(Cbtn);
 				
+				//가게 이름 입력
 				Cbtn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
 							String name = Name.getText();
-							//System.out.println(name);
 							String sname = SName.getText();
-							//System.out.println(sname);
 							Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg"); 
 							
 							Name.setVisible(false);
@@ -136,15 +140,17 @@ public class Intro extends JFrame {
 							Nbtn.setFocusPainted(false);
 							Nbtn.setContentAreaFilled(false); 
 							
+							monsterLa.setBounds(630, 120, 500, 500);
+							add(monsterLa);
+							Nbtn.setVisible(false);
+							
 							Nbtn.addMouseListener(new MouseAdapter() {
 								@Override
 							public void mousePressed(MouseEvent e) {
 								Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg"); 
-								Nbtn.setVisible(false);
 							} });
 				} });
 				
-				//가게 이름 입력
 				add(SName);
 				SName.setVisible(true);
 				SName.setBounds(640, 415, 400, 80);
