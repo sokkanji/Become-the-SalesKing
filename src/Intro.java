@@ -142,11 +142,14 @@ public class Intro extends JFrame {
 							
 							monsterLa.setBounds(630, 120, 500, 500);
 							add(monsterLa);
-							Nbtn.setVisible(false);
-							
+					
 							Nbtn.addMouseListener(new MouseAdapter() {
 								@Override
 							public void mousePressed(MouseEvent e) {
+									
+									monsterLa.setVisible(false);
+									Nbtn.setVisible(false);
+									
 								Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg"); 
 							} });
 				} });
