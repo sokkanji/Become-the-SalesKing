@@ -1,5 +1,4 @@
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -13,7 +12,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-@SuppressWarnings("serial")
 public class Intro extends JFrame {
 	
 	private Image screenImage;
@@ -45,10 +43,25 @@ public class Intro extends JFrame {
 								   new ImageIcon("images/OnNext.png")};
 	
 	ImageIcon monster[] = {new ImageIcon("images/monster1.png"),
-								  new ImageIcon("images/monster2.png"),
-								  new ImageIcon("images/monster3.png"),
-								  new ImageIcon("images/monster4.png"),
-								  new ImageIcon("images/monster5.png")};
+							new ImageIcon("images/monster2.png"),
+							new ImageIcon("images/monster3.png"),
+							new ImageIcon("images/monster4.png"),
+							new ImageIcon("images/monster5.png")};
+	
+	private JLabel order[] = {new JLabel("눈알 네 개 쉐이크 3잔 "),
+							 new JLabel("치키치키 초코 마카롱 3개"),
+							 new JLabel("슈스 스토리베리 쉐이크 6잔")};
+	JLabel story[]= {new JLabel("평범한 고등학생 민지"),
+					new JLabel("평범한 일상."),
+					new JLabel("평소와 똑같이 눈을 떴더니 지구가 보인다."),
+					new JLabel("정신을 차리고 민지는 다시 눈 떠보니 우주정거장에 있다."),
+					new JLabel("우주정거장에는 못 생기고 기괴하게 생긴 외계인이 있다."),
+					new JLabel("민지는 처음에 외계인을 보고 너무 놀라서 한 번 기절했었다."),
+					new JLabel("민지는 다시 정신을 차린 후 마음 진정시켜서 외계인한테 여기가 어디인지 물어보기로 결심한다."),
+					new JLabel("저기요.. 말씀 좀 여쭤도 되나요..?"),
+					new JLabel("무슨 일이냐? 삐뻐뿌꺼")};
+	
+	private JLabel monsterLa = new JLabel(monster[1]);
 	
 	//나가기, 시작, 조작방법 버튼
 	private JButton Endbtn = new JButton(End[0]);
@@ -57,11 +70,10 @@ public class Intro extends JFrame {
 	private JButton Bbtn = new JButton(Backbtn[0]);
 	private JButton Cbtn = new JButton(Checkbtn[0]);
 	private JButton Nbtn = new JButton(Nextbtn[0]);
-	
-	private JLabel monsterLa = new JLabel(monster[0]);
+	private JButton clickbtn = new JButton("Click!");
 	
 	private JTextField Name = new JTextField(20);
-	private JTextField SName = new JTextField(20);
+	private JTextField SName = new JTextField(20); //제거 예정
 	
 	Intro(){
 		setTitle("매출왕이 되자!!");
@@ -112,6 +124,7 @@ public class Intro extends JFrame {
 				Name.setBounds(640, 175, 400, 80);
 				Name.setFont(new Font("BOLD", Font.BOLD, 50));
 				
+				//확인버튼
 				Cbtn.setPressedIcon(Checkbtn[1]);
 				Cbtn.setRolloverIcon(Checkbtn[2]); 
 				Cbtn.setBounds(560, 620, 220, 100); 
@@ -120,17 +133,22 @@ public class Intro extends JFrame {
 				Cbtn.setContentAreaFilled(false); 
 				add(Cbtn);
 				
-				//가게 이름 입력
+				
 				Cbtn.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mousePressed(MouseEvent e) {
+							Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg"); 
+							
 							String name = Name.getText();
 							String sname = SName.getText();
-							Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg"); 
 							
 							Name.setVisible(false);
 							SName.setVisible(false);
 							Cbtn.setVisible(false);
+							
+							story[7].setBounds(100, 450, 400, 400);
+							story[7].setFont(new Font("배달의민족 주아", Font.CENTER_BASELINE, 30));
+							add(story[7]);
 							
 							add(Nbtn);
 							Nbtn.setPressedIcon(Nextbtn[1]);
@@ -140,17 +158,38 @@ public class Intro extends JFrame {
 							Nbtn.setFocusPainted(false);
 							Nbtn.setContentAreaFilled(false); 
 							
-							monsterLa.setBounds(630, 120, 500, 500);
-							add(monsterLa);
-					
+							//new Story();
+							
+							
 							Nbtn.addMouseListener(new MouseAdapter() {
 								@Override
 							public void mousePressed(MouseEvent e) {
-									
-									monsterLa.setVisible(false);
-									Nbtn.setVisible(false);
-									
 								Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg"); 
+								monsterLa.setBounds(10, 160, 400, 400);
+								add(monsterLa);
+								Nbtn.setVisible(false);
+								story[7].setVisible(false);
+								
+								order[0].setBounds(520, 0, 400, 160);
+								order[0].setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 25));
+								add(order[0]);
+								order[1].setBounds(520, 30, 400, 160);
+								order[1].setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 25));
+								add(order[1]);
+								
+								//click 버튼 넣기
+								clickbtn.setBounds(927, 315, 130, 80);
+								clickbtn.setBorderPainted(false); 
+								clickbtn.setFocusPainted(false);
+								clickbtn.setContentAreaFilled(false); 
+								clickbtn.setFont(new Font("배달의민족 도현", Font.BOLD, 30));
+								clickbtn.setForeground(Color.BLUE);
+								add(clickbtn);
+								clickbtn.addMouseListener(new MouseAdapter() {
+									public void mousePressed(MouseEvent e2) {
+										new Pos();	
+									}
+								});
 							} });
 				} });
 				
