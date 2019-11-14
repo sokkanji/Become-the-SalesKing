@@ -12,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Intro extends JFrame {
+class Play extends JFrame {
 	
 	private Image screenImage;
 	private Graphics screenGraphic; //전체화면에 대한 두 인스턴스
@@ -75,7 +75,7 @@ public class Intro extends JFrame {
 	private JTextField Name = new JTextField(20);
 	private JTextField SName = new JTextField(20); //제거 예정
 	
-	Intro(){
+	Play(){
 		setTitle("매출왕이 되자!!");
 	
 		setUndecorated(true); //실행했을 때 기본적으로 보이는 메뉴바가 안 보임.
@@ -156,10 +156,7 @@ public class Intro extends JFrame {
 							Nbtn.setBounds(1170, 625, 180, 110);
 							Nbtn.setBorderPainted(false); 
 							Nbtn.setFocusPainted(false);
-							Nbtn.setContentAreaFilled(false); 
-							
-							//new Story();
-							
+							Nbtn.setContentAreaFilled(false); 	
 							
 							Nbtn.addMouseListener(new MouseAdapter() {
 								@Override
