@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class Manage extends JFrame{
+class Manage extends JFrame{
 	JPanel panel = new JPanel();
 	
 	Manage(){
