@@ -1,3 +1,5 @@
+package POS;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -5,6 +7,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Random;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -27,27 +30,21 @@ class Intro extends JFrame {
 	private ImageIcon HowToPlaybtn[] = { new ImageIcon("images/BeforeHowToPlay.png"),
 			new ImageIcon("images/AfterHowToPlay.png"), new ImageIcon("images/OnHowToPlay.png") };
 	// 뒤로가기 버튼
-	public ImageIcon Backbtn[] = { new ImageIcon("images/BeforeBack.png"), new ImageIcon("images/AfterBack.png"),
+	private ImageIcon Backbtn[] = { new ImageIcon("images/BeforeBack.png"), new ImageIcon("images/AfterBack.png"),
 			new ImageIcon("images/OnBack.png") };
 
 	private ImageIcon Checkbtn[] = { new ImageIcon("images/BeforeCheck.png"), new ImageIcon("images/AfterCheck.png"),
 			new ImageIcon("images/OnCheck.png") };
 
 	private ImageIcon Nextbtn[] = { new ImageIcon("images/ANext.png"), new ImageIcon("images/BNext.png"),
-			new ImageIcon("images/OnNext.png") };
+			new ImageIcon("images/OnNext.png") }; ///
 
-	ImageIcon monster[] = { new ImageIcon("images/monster1.png"), new ImageIcon("images/monster2.png"),
+	private ImageIcon monster[] = { new ImageIcon("images/monster1.png"), new ImageIcon("images/monster2.png"),
 			new ImageIcon("images/monster3.png"), new ImageIcon("images/monster4.png"),
 			new ImageIcon("images/monster5.png") };
 
-	private JLabel order[] = { new JLabel("눈알 네 개 쉐이크 3잔 "), new JLabel("치키치키 초코 마카롱 3개"),
-			new JLabel("슈스 스토리베리 쉐이크 6잔") };
-
-	JLabel story[] = { new JLabel("평범한 고등학생 민지"), new JLabel("평범한 일상."), new JLabel("평소와 똑같이 눈을 떴더니 지구가 보인다."),
-			new JLabel("정신을 차리고 민지는 다시 눈 떠보니 우주정거장에 있다."), new JLabel("우주정거장에는 못 생기고 기괴하게 생긴 외계인이 있다."),
-			new JLabel("민지는 처음에 외계인을 보고 너무 놀라서 한 번 기절했었다."),
-			new JLabel("민지는 다시 정신을 차린 후 마음 진정시켜서 외계인한테 여기가 어디인지 물어보기로 결심한다."), new JLabel("저기요.. 말씀 좀 여쭤도 되나요..?"),
-			new JLabel("무슨 일이냐? 삐뻐뿌꺼") };
+	private JLabel order_txt[] = { new JLabel("눈알 네 개 쉐이크 "), new JLabel("치키치키 초코 마카롱"), new JLabel("슈스 스토리 베리 쉐이크") };
+	private JLabel order_end = new JLabel("개 주세요.");
 
 	private JLabel monsterLa = new JLabel(monster[1]);
 
@@ -63,11 +60,24 @@ class Intro extends JFrame {
 	private JButton clickbtn = new JButton("Click!");
 
 	private JTextField Name = new JTextField(20);
-	private JTextField SName = new JTextField(20); // 제거 예정
+
+	private JLabel story[] = { new JLabel("평범한 고등학생 민지"), new JLabel("평범한 일상."), new JLabel("평소와 똑같이 눈을 떴더니 지구가 보인다."),
+			new JLabel("정신을 차리고 민지는 다시 눈 떠보니 우주정거장에 있다."), new JLabel("우주정거장에는 못 생기고 기괴하게 생긴 외계인이 있다."),
+			new JLabel("민지는 처음에 외계인을 보고 너무 놀라서 한 번 기절했었다."),
+			new JLabel("민지는 다시 정신을 차린 후 마음 진정시켜서 외계인한테 여기가 어디인지 물어보기로 결심한다."), new JLabel("저기요.. 말씀 좀 여쭤도 되나요..?"),
+			new JLabel("무슨 일이냐? 삐뻐뿌꺼") };
+
+	Random order_rand = new Random();
+	Random Menu_rand = new Random();
+	int o_rand = 0;
+	int m_rand = 0;
 
 	Intro() {
 		setTitle("매출왕이 되자!!");
-
+		
+		Music introMusic = new Music("introMusic.MP3", true);
+		introMusic.start();
+		
 		setUndecorated(true); // 실행했을 때 기본적으로 보이는 메뉴바가 안 보임.
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT);
@@ -76,7 +86,8 @@ class Intro extends JFrame {
 		setVisible(true);
 		setBackground(new Color(0, 0, 0, 0));
 		setLayout(null);
-
+	
+		
 		// 종료버튼
 		Endbtn.setRolloverIcon(End[1]);
 		Endbtn.setBounds(1250, 10, 100, 80);
@@ -99,7 +110,7 @@ class Intro extends JFrame {
 		Lbtn.setFocusPainted(false);
 		Lbtn.setContentAreaFilled(false);
 		add(Lbtn);
-		Lbtn.addMouseListener(new StartMouseAdapter());
+		Lbtn.addMouseListener(new ConfigMouseAdapter());
 
 		// 조작방법 버튼
 		Rbtn.setPressedIcon(HowToPlaybtn[1]);
@@ -141,54 +152,15 @@ class Intro extends JFrame {
 		});
 	}
 
-	// 시작하기 버튼에 대한 어댑터 (정보 입력 화면)
-	class StartMouseAdapter extends MouseAdapter {
-		@Override
-		public void mousePressed(MouseEvent e) {
-			Background = Toolkit.getDefaultToolkit().createImage("images/Initbackground.jpg");
-			Rbtn.setVisible(false);
-			Lbtn.setVisible(false);
-
-			// 이름 입력
-			add(Name);
-			Name.setVisible(true);
-			Name.setBounds(640, 175, 400, 80);
-			Name.setFont(new Font("BOLD", Font.BOLD, 50));
-
-			// 확인버튼
-			Cbtn.setPressedIcon(Checkbtn[1]);
-			Cbtn.setRolloverIcon(Checkbtn[2]);
-			Cbtn.setBounds(560, 620, 220, 100);
-			Cbtn.setBorderPainted(false);
-			Cbtn.setFocusPainted(false);
-			Cbtn.setContentAreaFilled(false);
-			add(Cbtn);
-
-			SName.setVisible(true);
-			SName.setBounds(640, 415, 400, 80);
-			SName.setFont(new Font("BOLD", Font.BOLD, 50));
-			add(SName);
-
-			Cbtn.addMouseListener(new ConfigtMouseAdapter());
-		}
-	}
-
-	// 이름, 가게 이름 입력 화면의 확인 버튼에 대한 어댑터 (스토리 화면)
-	class ConfigtMouseAdapter extends MouseAdapter {
+	
+	
+	// 스토리 화면
+	class ConfigMouseAdapter extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg");
-
-			String name = Name.getText();
-			String sname = SName.getText();
-
-			Name.setVisible(false);
-			SName.setVisible(false);
-			Cbtn.setVisible(false);
-
-			story[7].setBounds(100, 450, 400, 400);
-			story[7].setFont(new Font("배달의민족 주아", Font.CENTER_BASELINE, 30));
-			add(story[7]);
+			Rbtn.setVisible(false);
+			Lbtn.setVisible(false);
 
 			add(Nbtn);
 			Nbtn.setPressedIcon(Nextbtn[1]);
@@ -200,10 +172,26 @@ class Intro extends JFrame {
 
 			Nbtn.addMouseListener(new NextMouseAdapter());
 
+			// 이름 입력
+			add(Name);
+			Name.setVisible(true);
+			Name.setBounds(140, 600, 400, 80);
+			Name.setFont(new Font("배달의민족 주아", Font.BOLD, 45));
+			Name.setOpaque(false);
+
+			String name = Name.getText();
+
+//			story[i].setBounds(100, 450, 800, 400);
+//			story[i].setFont(new Font("배달의민족 주아", Font.BOLD, 30));
+//			add(story[i]);
+//			story[i].setVisible(false);
+
 		}
 	}
 
-	// Next 버튼에 대한 어댑터 (주문 화면)
+	
+	
+// Next 버튼에 대한 어댑터 (주문 화면)
 	class NextMouseAdapter extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -211,14 +199,24 @@ class Intro extends JFrame {
 			monsterLa.setBounds(10, 160, 400, 400);
 			add(monsterLa);
 			Nbtn.setVisible(false);
-			story[7].setVisible(false);
+			Name.setVisible(false);
 
-			order[0].setBounds(520, 0, 400, 160);
-			order[0].setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 25));
-			add(order[0]);
-			order[1].setBounds(520, 30, 400, 160);
-			order[1].setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 25));
-			add(order[1]);
+			o_rand = order_rand.nextInt(3);
+			m_rand = Menu_rand.nextInt(7);
+			order_txt[o_rand].setBounds(440, 10, 400, 160);
+			order_txt[o_rand].setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+
+			String num = Integer.toString(m_rand);
+			JLabel menu_num = new JLabel(num);
+			menu_num.setBounds(730, 10, 400, 160);
+			menu_num.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+
+			order_end.setBounds(750, 10, 400, 160);
+			order_end.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+
+			add(order_txt[o_rand]);
+			add(menu_num);
+			add(order_end);
 
 			// click 버튼 넣기
 			clickbtn.setBounds(927, 315, 130, 80);
@@ -236,6 +234,8 @@ class Intro extends JFrame {
 		}
 	}
 
+	
+	
 	public void paint(Graphics g) { // GUI화면 중 제일 첫번째 화면을 그려주는 함수
 		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImage에 1200X700의 이미지를 넣어줌
 		screenGraphic = screenImage.getGraphics(); // 겟그래픽을 이용해서 스크린그래픽을 얻어옴
