@@ -45,8 +45,6 @@ class Intro extends JFrame {
 
 	private JLabel order_end = new JLabel("개 주세요.");
 
-	private JLabel monsterLa = new JLabel(monster[1]);
-
 	// 나가기, 시작, 조작방법 버튼
 	private JButton Endbtn = new JButton(End[0]);
 	private JButton Lbtn = new JButton(Startbtn[0]);
@@ -196,14 +194,18 @@ class Intro extends JFrame {
 			String Menu_txt[]= {"눈알 네 개 쉐이크", "치키치키 초코 마카롱", "슈스 스토리 베리 쉐이크", "베리베리 블루베리 마카롱", "아빠와 나는 외계인 라떼",
 					"삐립삐립 지구행성맛 에이드", "슈스 스토리베리 쉐이크", "룩앳 마이노즈 아메리카노", "매쉬 핫솟 포테이토 쿠키", "씨쁠씨쁠 사람일까요쿠키"};
 			JLabel timerLabel = new JLabel();
-		
+			JLabel monsterLa[]=new JLabel[5];
+			
+			int i = 0;
 			int o_rand = 0;
 			int m_rand = 0;
 			
 			Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
+			Nbtn.setVisible(false);
+			Name.setVisible(false);
 			
 			//주문
-			for(int i=0; i<Menu_txt.length; i++)
+			for(i=0; i<Menu_txt.length; i++)
 				order_txt[i]=new JLabel(Menu_txt[i]);
 			
 			o_rand = (int)(Math.random()*10);
@@ -213,10 +215,10 @@ class Intro extends JFrame {
 
 			String num = Integer.toString(m_rand);
 			JLabel menu_num = new JLabel(num);
-			menu_num.setBounds(800, 10, 400, 160);
+			menu_num.setBounds(820, 10, 400, 160);
 			menu_num.setFont(new Font("배달의민족 도현", Font.BOLD, 30));
 
-			order_end.setBounds(820, 10, 400, 160);
+			order_end.setBounds(840, 10, 400, 160);
 			order_end.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
 
 			add(order_txt[o_rand]);
@@ -236,10 +238,13 @@ class Intro extends JFrame {
 			date[1].setBounds(165, -5, 100, 100);
 			
 			//몬스터 이미지 출력
-			monsterLa.setBounds(70, 160, 400, 400);
-			add(monsterLa);
-			Nbtn.setVisible(false);
-			Name.setVisible(false);
+			for(i=0; i<monster.length; i++)
+				monsterLa[i]= new JLabel(monster[i]);
+			
+			int r_monster=(int)(Math.random()*5);
+			monsterLa[r_monster].setBounds(50, 95, 500, 500);
+			add(monsterLa[r_monster]);
+			
 
 			// click 버튼 넣기
 			clickbtn.setBounds(927, 315, 130, 80);
