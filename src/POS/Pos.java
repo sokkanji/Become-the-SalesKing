@@ -1,4 +1,5 @@
 package POS;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -48,19 +49,20 @@ class Pos extends JFrame{
 	private JButton Init_btn = new JButton(Init[0]);
 	
 	private JLabel total_label = new JLabel("총합 : ");
-//	private JTextField total_cost = new JTextField("0",10);
-//	private JTextField total_cost2 = new JTextField("0",10);
+	private JLabel total_price = new JLabel("0");
 
 	// MyTableModel model;
 
 	DefaultTableModel dmodel;
 	JTable table;
 	JScrollPane scroll;
-	Vector<String> colName = new Vector<String>();
+	Vector colName = new Vector();
 	int selRow; // 선택한 셀
 	String bar = "";
-	int no = 1;
-	Vector<Comparable> record;
+	int no = 1; //테이블에 들어가는 번호
+	int count[]= {1,1,1,1,1,1,1,1,1};
+	int t_price=0;
+	Vector record;
 	Vector vec;
 
 	Pos(){
@@ -79,18 +81,19 @@ class Pos extends JFrame{
 		add(Menu1);
 		panel.add(Menu1);
 		Menu1.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=4000;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("눈알 네 개 쉐이크")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[0]+=1, i, 2);
+							table.setValueAt(price*count[0], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[0]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("눈알 네 개 쉐이크");
@@ -99,11 +102,11 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("눈알 네 개 쉐이크");
-					record.addElement(count);
+					record.addElement(count[0]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -119,31 +122,32 @@ class Pos extends JFrame{
 		add(Menu2);
 		panel.add(Menu2);
 		Menu2.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=2500;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("베리베리 블루베리 마카롱")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[1]+=1, i, 2);
+							table.setValueAt(price*count[1], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[1]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("베리베리 블루베리 마카롱");
-						record.addElement(count);
+						record.addElement(count[1]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("베리베리 블루베리 마카롱");
-					record.addElement(count);
+					record.addElement(count[1]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -159,31 +163,32 @@ class Pos extends JFrame{
 		add(Menu3);
 		panel.add(Menu3);
 		Menu3.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=2500;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("치키치키 초코 마카롱")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[2]+=1, i, 2);
+							table.setValueAt(price*count[2], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[2]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("치키치키 초코 마카롱");
-						record.addElement(count);
+						record.addElement(count[2]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("치키치키 초코 마카롱");
-					record.addElement(count);
+					record.addElement(count[2]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -199,31 +204,32 @@ class Pos extends JFrame{
 		add(Menu4);
 		panel.add(Menu4);
 		Menu4.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=5500;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("아빠와 나는 외계인 라떼")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[3]+=1, i, 2);
+							table.setValueAt(price*count[3], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[3]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("아빠와 나는 외계인 라떼");
-						record.addElement(count);
+						record.addElement(count[3]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("아빠와 나는 외계인 라떼");
-					record.addElement(count);
+					record.addElement(count[3]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -239,31 +245,32 @@ class Pos extends JFrame{
 		add(Menu5);
 		panel.add(Menu5);
 		Menu5.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=5000;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("삐립삐립 지구행성맛 에이드")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[4]+=1, i, 2);
+							table.setValueAt(price*count[4], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[4]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("삐립삐립 지구행성맛 에이드");
-						record.addElement(count);
+						record.addElement(count[4]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("삐립삐립 지구행성맛 에이드");
-					record.addElement(count);
+					record.addElement(count[4]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -279,31 +286,32 @@ class Pos extends JFrame{
 		add(Menu6);
 		panel.add(Menu6);
 		Menu6.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=4000;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("슈스 스트로베리 쉐이크")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[5]+=1, i, 2);
+							table.setValueAt(price*count[5], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[5]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("슈스 스트로베리 쉐이크");
-						record.addElement(count);
+						record.addElement(count[5]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("슈스 스트로베리 쉐이크");
-					record.addElement(count);
+					record.addElement(count[5]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -319,31 +327,32 @@ class Pos extends JFrame{
 		add(Menu7);
 		panel.add(Menu7);
 		Menu7.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=3000;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("룩앳 마이노즈 아메리카노")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[6]+=1, i, 2);
+							table.setValueAt(price*count[6], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[6]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("룩앳 마이노즈 아메리카노");
-						record.addElement(count);
+						record.addElement(count[6]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("룩앳 마이노즈 아메리카노");
-					record.addElement(count);
+					record.addElement(count[6]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -359,31 +368,32 @@ class Pos extends JFrame{
 		add(Menu8);
 		panel.add(Menu8);
 		Menu8.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=3500;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("매쉬 핫솟 포테이토 쿠기")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[7]+=1, i, 2);
+							table.setValueAt(price*count[7], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[7]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("매쉬 핫솟 포테이토 쿠기");
-						record.addElement(count);
+						record.addElement(count[7]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("매쉬 핫솟 포테이토 쿠기");
-					record.addElement(count);
+					record.addElement(count[7]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -399,31 +409,32 @@ class Pos extends JFrame{
 		add(Menu9);
 		panel.add(Menu9);
 		Menu9.addMouseListener(new MouseAdapter() {
-			int count=1;
 			int price=3500;
 			public void mousePressed(MouseEvent e) {
+				t_price+=price;
+				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
 						if(table.getValueAt(i, 1).equals("씨쁠씨쁠 사람일까요 쿠키")) {
-							table.setValueAt(count+=1, i, 2);
-							table.setValueAt(price*count, i, 3);
+							table.setValueAt(count[8]+=1, i, 2);
+							table.setValueAt(price*count[8], i, 3);
 						}
 					}
-					if(count==1) {
-						record = new Vector<Comparable>();
+					if(count[8]==1) {
+						record = new Vector();
 						record.addElement(no);
 						no+=1;
 						record.addElement("씨쁠씨쁠 사람일까요 쿠키");
-						record.addElement(count);
+						record.addElement(count[8]);
 						record.addElement(price);
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector<Comparable>();
+					record = new Vector();
 					record.addElement(no);
 					no+=1;
 					record.addElement("씨쁠씨쁠 사람일까요 쿠키");
-					record.addElement(count);
+					record.addElement(count[8]);
 					record.addElement(price);
 					dmodel.addRow(record);
 				}
@@ -461,31 +472,18 @@ class Pos extends JFrame{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				no = 1;
+				for(int i=0; i<count.length; i++) {
+					count[i]=1;
+				}
+				t_price =0;
+				total_price.setText(Integer.toString(t_price));
 				// TODO Auto-generated method stub
 				for(int i = dmodel.getRowCount() - 1; i >= 0; i--) {
-					
 					dmodel.removeRow(i);
-					
 					}
 			}
 		});
-				
-		
-		/*테이블 내용 변경시 자동으로 최종 금액나오게하는 이벤트*/
-//		table.getModel().addTableModelListener(new TableModelListener() {
-//			@Override
-//			public void tableChanged(TableModelEvent e) {
-//				int tcost=0;
-//				int count=0;
-//				// TODO Auto-generated method stub
-//				for (int i = 0; i < dmodel.getRowCount(); i++) {
-//					count = (Integer) table.getValueAt(i, 3);
-//					tcost += count;
-//				}
-//				total_cost.setText(Integer.toString(tcost));
-//				total_cost2.setText(total_cost.getText());
-//			}
-//		});
 		
 		colName.add("번호"); //0
 
@@ -518,10 +516,9 @@ class Pos extends JFrame{
 		total_label.setFont(total_label.getFont().deriveFont(40.0f));
 		add(total_label);
 		
-		//테이블 변경 자동 계산 코드
-//		total_cost.setEditable(false);
-//		total_cost2.setBounds(900,540,100,100);
-//		add(total_cost2);
+		total_price.setBounds(750, 540, 300, 150);
+		total_price.setFont(total_label.getFont().deriveFont(40.0f));
+		add(total_price);
 		
 		add(panel);
 		setSize(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); 

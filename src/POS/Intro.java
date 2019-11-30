@@ -43,7 +43,6 @@ class Intro extends JFrame {
 			new ImageIcon("images/monster3.png"), new ImageIcon("images/monster4.png"),
 			new ImageIcon("images/monster5.png") };
 
-	private JLabel order_txt[] = { new JLabel("눈알 네 개 쉐이크 "), new JLabel("치키치키 초코 마카롱"), new JLabel("슈스 스토리 베리 쉐이크") };
 	private JLabel order_end = new JLabel("개 주세요.");
 
 	private JLabel monsterLa = new JLabel(monster[1]);
@@ -67,10 +66,6 @@ class Intro extends JFrame {
 			new JLabel("민지는 다시 정신을 차린 후 마음 진정시켜서 외계인한테 여기가 어디인지 물어보기로 결심한다."), new JLabel("저기요.. 말씀 좀 여쭤도 되나요..?"),
 			new JLabel("무슨 일이냐? 삐뻐뿌꺼") };
 
-	Random order_rand = new Random();
-	Random Menu_rand = new Random();
-	int o_rand = 0;
-	int m_rand = 0;
 
 	Intro() {
 		setTitle("매출왕이 되자!!");
@@ -195,28 +190,56 @@ class Intro extends JFrame {
 	class NextMouseAdapter extends MouseAdapter {
 		@Override
 		public void mousePressed(MouseEvent e) {
+			JLabel date[] = { new JLabel("1"), new JLabel("2"), new JLabel("3"), new JLabel("4") };
+			//JLabel money=new JLabel();
+			JLabel order_txt[]=new JLabel[10];
+			String Menu_txt[]= {"눈알 네 개 쉐이크", "치키치키 초코 마카롱", "슈스 스토리 베리 쉐이크", "베리베리 블루베리 마카롱", "아빠와 나는 외계인 라떼",
+					"삐립삐립 지구행성맛 에이드", "슈스 스토리베리 쉐이크", "룩앳 마이노즈 아메리카노", "매쉬 핫솟 포테이토 쿠키", "씨쁠씨쁠 사람일까요쿠키"};
+			JLabel timerLabel = new JLabel();
+		
+			int o_rand = 0;
+			int m_rand = 0;
+			
 			Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
-			monsterLa.setBounds(10, 160, 400, 400);
-			add(monsterLa);
-			Nbtn.setVisible(false);
-			Name.setVisible(false);
-
-			o_rand = order_rand.nextInt(3);
-			m_rand = Menu_rand.nextInt(7);
-			order_txt[o_rand].setBounds(440, 10, 400, 160);
+			
+			//주문
+			for(int i=0; i<Menu_txt.length; i++)
+				order_txt[i]=new JLabel(Menu_txt[i]);
+			
+			o_rand = (int)(Math.random()*10);
+			m_rand =  (int)(Math.random()*7+1);
+			order_txt[o_rand].setBounds(500, 10, 400, 160);
 			order_txt[o_rand].setFont(new Font("배달의민족 도현", Font.BOLD, 25));
 
 			String num = Integer.toString(m_rand);
 			JLabel menu_num = new JLabel(num);
-			menu_num.setBounds(730, 10, 400, 160);
-			menu_num.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+			menu_num.setBounds(800, 10, 400, 160);
+			menu_num.setFont(new Font("배달의민족 도현", Font.BOLD, 30));
 
-			order_end.setBounds(750, 10, 400, 160);
+			order_end.setBounds(820, 10, 400, 160);
 			order_end.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
 
 			add(order_txt[o_rand]);
 			add(menu_num);
 			add(order_end);
+
+			//타이머
+			timerLabel.setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 50));
+			add(timerLabel);
+			timerLabel.setBounds(1195, 86, 100, 100);
+
+			TimerThread th = new TimerThread(timerLabel);
+			th.start();
+			
+			add(date[1]);
+			date[1].setFont(new Font("Gothic", Font.ITALIC, 35));
+			date[1].setBounds(165, -5, 100, 100);
+			
+			//몬스터 이미지 출력
+			monsterLa.setBounds(70, 160, 400, 400);
+			add(monsterLa);
+			Nbtn.setVisible(false);
+			Name.setVisible(false);
 
 			// click 버튼 넣기
 			clickbtn.setBounds(927, 315, 130, 80);
