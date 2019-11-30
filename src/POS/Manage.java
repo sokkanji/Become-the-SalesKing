@@ -1,8 +1,7 @@
 package POS;
-
 import javax.swing.*;
 
-class Manage extends JFrame{
+public class Manage extends JFrame{
 	JPanel panel = new JPanel();
 	
 	Manage(){

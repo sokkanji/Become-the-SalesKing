@@ -56,11 +56,11 @@ class Pos extends JFrame{
 	DefaultTableModel dmodel;
 	JTable table;
 	JScrollPane scroll;
-	Vector colName = new Vector();
+	Vector<String> colName = new Vector<String>();
 	int selRow; // ¼±ÅÃÇÑ ¼¿
 	String bar = "";
 	int no = 1;
-	Vector record;
+	Vector<Comparable> record;
 	Vector vec;
 
 	Pos(){
@@ -90,7 +90,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("´«¾Ë ³× °³ ½¦ÀÌÅ©");
@@ -99,7 +99,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("´«¾Ë ³× °³ ½¦ÀÌÅ©");
@@ -130,7 +130,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ");
@@ -139,7 +139,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ");
@@ -170,7 +170,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ");
@@ -179,7 +179,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ");
@@ -210,7 +210,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼");
@@ -219,7 +219,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼");
@@ -250,7 +250,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå");
@@ -259,7 +259,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå");
@@ -290,7 +290,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©");
@@ -299,7 +299,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©");
@@ -330,7 +330,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë");
@@ -339,7 +339,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë");
@@ -370,7 +370,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä Äí±â");
@@ -379,7 +379,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä Äí±â");
@@ -410,7 +410,7 @@ class Pos extends JFrame{
 						}
 					}
 					if(count==1) {
-						record = new Vector();
+						record = new Vector<Comparable>();
 						record.addElement(no);
 						no+=1;
 						record.addElement("¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°");
@@ -419,7 +419,7 @@ class Pos extends JFrame{
 						dmodel.addRow(record);
 					}
 				}else {
-					record = new Vector();
+					record = new Vector<Comparable>();
 					record.addElement(no);
 					no+=1;
 					record.addElement("¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°");
