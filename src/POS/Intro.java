@@ -43,8 +43,6 @@ class Intro extends JFrame {
 			new ImageIcon("images/monster3.png"), new ImageIcon("images/monster4.png"),
 			new ImageIcon("images/monster5.png") };
 
-	private JLabel order_end = new JLabel("개 주세요.");
-
 	// 나가기, 시작, 조작방법 버튼
 	private JButton Endbtn = new JButton(End[0]);
 	private JButton Lbtn = new JButton(Startbtn[0]);
@@ -190,40 +188,67 @@ class Intro extends JFrame {
 		public void mousePressed(MouseEvent e) {
 			JLabel date[] = { new JLabel("1"), new JLabel("2"), new JLabel("3"), new JLabel("4") };
 			//JLabel money=new JLabel();
+			//주문 메뉴 이름 붙일 라벨
 			JLabel order_txt[]=new JLabel[10];
+			JLabel order_txt2[]=new JLabel[10];
+			//메뉴이름
 			String Menu_txt[]= {"눈알 네 개 쉐이크", "치키치키 초코 마카롱", "슈스 스토리 베리 쉐이크", "베리베리 블루베리 마카롱", "아빠와 나는 외계인 라떼",
 					"삐립삐립 지구행성맛 에이드", "슈스 스토리베리 쉐이크", "룩앳 마이노즈 아메리카노", "매쉬 핫솟 포테이토 쿠키", "씨쁠씨쁠 사람일까요쿠키"};
 			JLabel timerLabel = new JLabel();
 			JLabel monsterLa[]=new JLabel[5];
 			
+			JLabel order_end = new JLabel("개 주세요.");
+			JLabel order_end2 = new JLabel("개랑");
+			
 			int i = 0;
 			int o_rand = 0;
+			int o_rand2 = 0;
 			int m_rand = 0;
+			int m_rand2 = 0;
 			
 			Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
 			Nbtn.setVisible(false);
 			Name.setVisible(false);
 			
 			//주문
-			for(i=0; i<Menu_txt.length; i++)
-				order_txt[i]=new JLabel(Menu_txt[i]);
+			for(i=0; i<Menu_txt.length; i++) {
+				order_txt[i]=new JLabel(Menu_txt[i]); //라벨에 주문 메뉴 이름 부착
+				order_txt2[i]=new JLabel(Menu_txt[i]);
+			}
 			
-			o_rand = (int)(Math.random()*10);
+			o_rand = (int)(Math.random()*10); 
+			o_rand2 = (int)(Math.random()*10); 
 			m_rand =  (int)(Math.random()*7+1);
+			m_rand2 =  (int)(Math.random()*7+1);
+			
 			order_txt[o_rand].setBounds(500, 10, 400, 160);
 			order_txt[o_rand].setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+			
+			order_txt2[o_rand2].setBounds(500, 45, 400, 160);
+			order_txt2[o_rand2].setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+
 
 			String num = Integer.toString(m_rand);
 			JLabel menu_num = new JLabel(num);
 			menu_num.setBounds(820, 10, 400, 160);
 			menu_num.setFont(new Font("배달의민족 도현", Font.BOLD, 30));
+			
+			String num2 = Integer.toString(m_rand2);
+			JLabel menu_num2 = new JLabel(num2);
+			menu_num2.setBounds(820, 45, 400, 160);
+			menu_num2.setFont(new Font("배달의민족 도현", Font.BOLD, 30));
 
-			order_end.setBounds(840, 10, 400, 160);
+			order_end.setBounds(840, 45, 400, 160);
 			order_end.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
-
+			order_end2.setBounds(840, 10, 400, 160);
+			order_end2.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+			
 			add(order_txt[o_rand]);
+			add(order_txt2[o_rand2]);
 			add(menu_num);
+			add(menu_num2);
 			add(order_end);
+			add(order_end2);
 
 			//타이머
 			timerLabel.setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 50));
@@ -233,9 +258,9 @@ class Intro extends JFrame {
 			TimerThread th = new TimerThread(timerLabel);
 			th.start();
 			
-			add(date[1]);
-			date[1].setFont(new Font("Gothic", Font.ITALIC, 35));
-			date[1].setBounds(165, -5, 100, 100);
+			add(date[0]);
+			date[0].setFont(new Font("Gothic", Font.ITALIC, 35));
+			date[0].setBounds(165, -5, 100, 100);
 			
 			//몬스터 이미지 출력
 			for(i=0; i<monster.length; i++)

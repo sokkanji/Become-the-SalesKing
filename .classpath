@@ -5,7 +5,5 @@
 	<classpathentry kind="lib" path="jl1.0.1.jar"/>
 	<classpathentry kind="lib" path="mysql-connector-java-5.1.48-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/PC/Downloads/jlayer1.0.1/JLayer1.0.1/jl1.0.1.jar"/>
-	<classpathentry kind="lib" path="D:/mysql-connector-java-5.1.45/mysql-connector-java-5.1.45-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
