@@ -566,10 +566,13 @@ class Pos extends JFrame{
 						System.out.println(table.getRowCount());
 						System.out.println((table.getValueAt(i, 1)));
 						System.out.println((table.getValueAt(i, 2)));
-						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt))) {
+						//순서가 바뀌어도 되게 해야함..
+						if(((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)))
+								||((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2)))) {
 							cnt++;
 							System.out.println("ok1");
-						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))) {
+						}else if(((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2)))
+								||((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)))) {
 							cnt++;
 							System.out.println("ok2");
 						}
