@@ -172,7 +172,7 @@ class Intro extends JFrame {
 			Name.setFont(new Font("배달의민족 주아", Font.BOLD, 45));
 			Name.setOpaque(false);
 
-			String name = Name.getText();
+			String name = Name.getText(); 
 
 //			story[i].setBounds(100, 450, 800, 400);
 //			story[i].setFont(new Font("배달의민족 주아", Font.BOLD, 30));
