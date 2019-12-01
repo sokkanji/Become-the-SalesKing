@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 
 import javazoom.jl.player.Player;
 
+
 class Music extends Thread {
 
 	private Player player;
