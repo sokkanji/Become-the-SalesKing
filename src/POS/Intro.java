@@ -8,6 +8,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Random;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 class Intro extends JFrame {
-
+	
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg");
@@ -206,6 +207,8 @@ class Intro extends JFrame {
 			int m_rand = 0;
 			int m_rand2 = 0;
 			
+			boolean check=false;
+			
 			Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
 			Nbtn.setVisible(false);
 			Name.setVisible(false);
@@ -250,7 +253,7 @@ class Intro extends JFrame {
 			add(order_end);
 			add(order_end2);
 
-			//타이머
+			//타이머 부착
 			timerLabel.setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 50));
 			add(timerLabel);
 			timerLabel.setBounds(1195, 86, 100, 100);
@@ -262,7 +265,7 @@ class Intro extends JFrame {
 			date[0].setFont(new Font("Gothic", Font.ITALIC, 35));
 			date[0].setBounds(165, -5, 100, 100);
 			
-			//몬스터 이미지 출력
+			//몬스터 이미지 부착
 			for(i=0; i<monster.length; i++)
 				monsterLa[i]= new JLabel(monster[i]);
 			
@@ -281,7 +284,9 @@ class Intro extends JFrame {
 			add(clickbtn);
 			clickbtn.addMouseListener(new MouseAdapter() {
 				public void mousePressed(MouseEvent e2) {
-					new Pos();
+					JFrame oJFrame = new JFrame(); 
+					oJFrame.getContentPane().add(new Pos());// pass Object to GUI Component as an argument
+//					new Pos();
 				}
 			});
 		}

@@ -15,12 +15,13 @@ class TimerThread extends Thread {
 		while(true) {
 			timerLabel.setText(Integer.toString(n)); 
 			n++; 
-			try {
-				Thread.sleep(1000);
-			}
-			catch(InterruptedException e) {
-				return;
-			}
+				try {
+					Thread.sleep(1000);
+				}
+				catch(InterruptedException e) {
+					return;
+				}
+			
 		}
 	}
 }
