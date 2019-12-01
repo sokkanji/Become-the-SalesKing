@@ -65,8 +65,8 @@ public class JPanelOrder extends JPanel{
 		while(o_rand2==o_rand) {
 			o_rand2 = (int)(Math.random()*10);
 		}
-		m_rand =  (int)(Math.random()*7+1);
-		m_rand2 =  (int)(Math.random()*7+1);
+		m_rand =  (int)(Math.random()*5+1);
+		m_rand2 =  (int)(Math.random()*5+1);
 		
 		order_txt[o_rand].setBounds(500, 10, 400, 160);
 		order_txt[o_rand].setFont(new Font("배달의민족 도현", Font.BOLD, 25));

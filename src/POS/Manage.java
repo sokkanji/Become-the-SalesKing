@@ -43,7 +43,7 @@ class Manage extends JFrame{
 	
 	int num_index;//선택한 버튼에 따라 btn_Title 쓸수있는 변수
 	
-	Manage(frame win){
+	Manage(frame win, Pos pos){
 		
 		
 		colName.add("눈알 네 개 쉐이크"); //0
@@ -142,24 +142,28 @@ class Manage extends JFrame{
 				
 				try {
 					int add = Integer.parseInt(tf.getText());
-					String sql = "select * from inventory";
-					pstmt = (PreparedStatement) conn.prepareStatement(sql);
-					ResultSet rs = pstmt.executeQuery();
-					String sql2 = "update inventory set m?=?";
-					pstmt = (PreparedStatement) conn.prepareStatement(sql2);
-					while(rs.next()) {
-						pstmt.setInt(1, num_index);
-						pstmt.setInt(2, rs.getInt(num_index)+add);
-					}
-					pstmt.executeUpdate();
 					win.money -= menu_price[num_index-1]*add;
+					//System.out.println(win.money);
 					if(win.money<0) {
 						dispose();
+						pos.dispose();
+						win.change("intro"); //마지막 결과창으로 가야함. 실패함으로 떠야돼
+					}else {
+						String sql = "select * from inventory";
+						pstmt = (PreparedStatement) conn.prepareStatement(sql);
+						ResultSet rs = pstmt.executeQuery();
+						String sql2 = "update inventory set m?=?";
+						pstmt = (PreparedStatement) conn.prepareStatement(sql2);
+						while(rs.next()) {
+							pstmt.setInt(1, num_index);
+							pstmt.setInt(2, rs.getInt(num_index)+add);
+						}
+						pstmt.executeUpdate();
+						
+						JOptionPane.showMessageDialog(null, 
+								"주문이 완료되었습니다.", "알림", 
+								JOptionPane.ERROR_MESSAGE);
 					}
-					JOptionPane.showMessageDialog(null, 
-							"주문이 완료되었습니다.", "알림", 
-							JOptionPane.ERROR_MESSAGE);
-					
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -176,7 +180,6 @@ class Manage extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
-				
 			}
 		});
 		

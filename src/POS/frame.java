@@ -23,7 +23,7 @@ public class frame extends JFrame{
 	
 	public void change(String panelName) {
 		if(panelName.equals("story")) {
-			if(ordernum==4) {
+			if(ordernum==6) {
 				getContentPane().removeAll();
 				getContentPane().add(intro); //그냥 임시로 맨 처음으로 해놓음. 원래 마지막 페이지여야 함.
 				revalidate();

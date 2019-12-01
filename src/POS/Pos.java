@@ -67,6 +67,7 @@ class Pos extends JFrame{
 	// MyTableModel model;
 	Manage m1;
 	private frame win;
+	Pos pos;
 
 	DefaultTableModel dmodel;
 	JTable table;
@@ -84,6 +85,8 @@ class Pos extends JFrame{
         // 주의, 여기서 setDefaultCloseOperation() 정의를 하지 말아야 한다
         // 정의하게 되면 새 창을 닫으면 모든 창과 프로그램이 동시에 꺼진다
 		this.win = win;
+		this.pos = this;
+		if(win.money<0) dispose();
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
@@ -462,7 +465,7 @@ class Pos extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					m1 = new Manage(win);
+					m1 = new Manage(win,pos);
 					
 					try {	
 						Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
@@ -560,11 +563,17 @@ class Pos extends JFrame{
 					pstmt.executeUpdate();
 					
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)
-								||table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2)) {
+						System.out.println(table.getRowCount());
+						System.out.println((table.getValueAt(i, 1)));
+						System.out.println((table.getValueAt(i, 2)));
+						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt))) {
 							cnt++;
 							System.out.println("ok1");
+						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))) {
+							cnt++;
+							System.out.println("ok2");
 						}
+						
 					}
 					
 					if(cnt==table.getRowCount()) {
@@ -586,8 +595,6 @@ class Pos extends JFrame{
 					//주문한 메뉴와 개수를 비교한다. //내 생각엔 주문한 메뉴와 개수 변수를 전역으로 놔야할 것 같음... 아니면 마우스어댑터에 있는걸 클래스로 만들던지...
 					//맞으면 점수 올라가고 또 다시 게임 진행한다.
 					
-					
-					
 				}catch(Exception ex){
 					System.out.println("SQLException:" + ex);
 				}
@@ -606,11 +613,11 @@ class Pos extends JFrame{
 
 		dmodel = new DefaultTableModel(colName, 0) {
 
-		public boolean isCellEditable(int row, int column) {
-
-		return false;
-
-		}
+			public boolean isCellEditable(int row, int column) {
+	
+			return false;
+	
+			}
 
 		};
 
