@@ -463,7 +463,7 @@ class Pos extends JFrame{
 					
 					try {	
 						Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
-						m1.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");     
+						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");        
 						System.out.println("DB 연결 완료");			
 					}catch(SQLException ex) {
 				        System.out.println("SQLException:" + ex);
