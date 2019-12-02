@@ -1,8 +1,5 @@
 package POS;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -11,7 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -25,6 +29,7 @@ class Manage extends JFrame{
 	final String[] btn_Title= {"눈알 네 개 쉐이크","베리베리 블루베리 마카롱","치키치키 초코 마카롱",
 								"아빠와 나는 외계인 라떼","삐립삐립 지구행성맛 에이드","슈스 스트로베리 쉐이크",
 								"룩앳 마이노즈 아메리카노","매쉬 핫솟 포테이토 쿠키","씨쁠씨쁠 사람일까요 쿠키"};
+	final int[] menu_price= {4000,2500,2500,5500,5000,4000,3000,3500,3500};
 	
 	JButton[] btn = new JButton[9];
 	JButton order_btn = new JButton("주문");
@@ -42,7 +47,7 @@ class Manage extends JFrame{
 	
 	int num_index;//선택한 버튼에 따라 btn_Title 쓸수있는 변수
 	
-	Manage(){
+	Manage(frame win, Pos pos){
 		
 		
 		colName.add("눈알 네 개 쉐이크"); //0
@@ -141,19 +146,29 @@ class Manage extends JFrame{
 				
 				try {
 					int add = Integer.parseInt(tf.getText());
-					String sql = "select * from inventory";
-					pstmt = (PreparedStatement) conn.prepareStatement(sql);
-					ResultSet rs = pstmt.executeQuery();
-					String sql2 = "update inventory set m?=?";
-					pstmt = (PreparedStatement) conn.prepareStatement(sql2);
-					while(rs.next()) {
-						pstmt.setInt(1, num_index);
-						pstmt.setInt(2, rs.getInt(num_index)+add);
+					win.money -= menu_price[num_index-1]*add;
+					//System.out.println(win.money);
+					if(win.money<0) {
+						dispose();
+						pos.dispose();
+						win.change("intro"); //마지막 결과창으로 가야함. 실패함으로 떠야돼
+					}else {
+						String sql = "select * from inventory";
+						pstmt = (PreparedStatement) conn.prepareStatement(sql);
+						ResultSet rs = pstmt.executeQuery();
+						String sql2 = "update inventory set m?=?";
+						pstmt = (PreparedStatement) conn.prepareStatement(sql2);
+						while(rs.next()) {
+							pstmt.setInt(1, num_index);
+							pstmt.setInt(2, rs.getInt(num_index)+add);
+						}
+						pstmt.executeUpdate();
+						
+						JOptionPane.showMessageDialog(null, 
+								"주문이 완료되었습니다.", "알림", 
+								JOptionPane.ERROR_MESSAGE);
 					}
-					pstmt.executeUpdate();
-					JOptionPane.showMessageDialog(null, 
-							"주문이 완료되었습니다.", "알림", 
-							JOptionPane.ERROR_MESSAGE);
+					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

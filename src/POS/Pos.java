@@ -1,5 +1,7 @@
 package POS;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -39,6 +41,7 @@ class Pos extends JFrame{
 	
 	private ImageIcon Inventory[]= {new ImageIcon("images/B_Inventory_btn.png"),new ImageIcon("images/A_Inventory_btn.png"),new ImageIcon("images/On_Inventory_btn.png")};
 	
+	private ImageIcon payment[] = {new ImageIcon("images/BeforeCheck.png"), new ImageIcon("images/AfterCheck.png"), new ImageIcon("images/OnCheck.png")};
 	private ImageIcon Init[]= {new ImageIcon("images/B_init.png"),new ImageIcon("images/A_init.png"),new ImageIcon("images/On_init.png")};
 	
 	private JButton Menu1 = new JButton(B_menu[0]);
@@ -55,7 +58,7 @@ class Pos extends JFrame{
 	
 	private JButton Init_btn = new JButton(Init[0]);
 	
-	private JButton payment_btn = new JButton("결제");
+	private JButton payment_btn = new JButton(payment[0]);
 	
 	private JLabel total_label = new JLabel("총합 : ");
 	private JLabel total_price = new JLabel("0");
@@ -66,6 +69,8 @@ class Pos extends JFrame{
 
 	// MyTableModel model;
 	Manage m1;
+	private frame win;
+	Pos pos;
 
 	DefaultTableModel dmodel;
 	JTable table;
@@ -79,9 +84,13 @@ class Pos extends JFrame{
 	Vector record;
 	Vector vec;
 
-	Pos(){
+	Pos(String order_menu,String order_menu2,int order_menu_cnt, int order_menu_cnt2, frame win){
         // 주의, 여기서 setDefaultCloseOperation() 정의를 하지 말아야 한다
         // 정의하게 되면 새 창을 닫으면 모든 창과 프로그램이 동시에 꺼진다
+		this.win = win;
+		this.pos = this;
+		if(win.money<0) dispose();
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
 		panel.setBounds(0, 0, 1340, 780);
@@ -459,11 +468,11 @@ class Pos extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					m1 = new Manage();
+					m1 = new Manage(win,pos);
 					
 					try {	
 						Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
-						Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");        
+						m1.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");        
 						System.out.println("DB 연결 완료");			
 					}catch(SQLException ex) {
 				        System.out.println("SQLException:" + ex);
@@ -513,14 +522,21 @@ class Pos extends JFrame{
 					}
 			}
 		});
+	
 		
-		payment_btn.setBounds(900,550,230,100);
+
+		payment_btn.setBounds(900,550,230,150);
+		payment_btn.setBorderPainted(false);
+		payment_btn.setFocusPainted(false);
+		payment_btn.setContentAreaFilled(false);
+		payment_btn.setPressedIcon(payment[1]);
+		payment_btn.setRolloverIcon(payment[2]);
 		add(payment_btn);
+		panel.add(payment_btn);
 		payment_btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				
 				Connection conn = null;
 				PreparedStatement pstmt = null;
@@ -534,6 +550,7 @@ class Pos extends JFrame{
 				
 				try {
 					int num[]= {10,10,10,10,10,10,10,10,10};
+					int cnt=0; //비교해서 맞으면 1더하기
 					String sql = "select * from inventory";
 					pstmt = (PreparedStatement) conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
@@ -554,11 +571,40 @@ class Pos extends JFrame{
 						}
 					}
 					pstmt.executeUpdate();
+					
+					for(int i=0;i<table.getRowCount();i++) {
+						System.out.println(table.getRowCount());
+						System.out.println((table.getValueAt(i, 1)));
+						System.out.println((table.getValueAt(i, 2)));
+						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt))) {
+							cnt++;
+							System.out.println("ok1");
+						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))) {
+							cnt++;
+							System.out.println("ok2");
+						}
+						
+					}
+					
+					if(cnt==table.getRowCount()) {
+						System.out.println("ok3");
+						win.money+=t_price;
+						win.change("story");
+						dispose();
+					}else if(cnt!=table.getRowCount()) {
+						win.money-=t_price;
+						if(win.money<0) {
+							dispose();
+							win.change("intro");//게임실패.. 마지막 게임 결과 페이지
+						}
+						win.change("story");
+						dispose();
+					}
 					//주문이 맞는지 아닌지 판단 
 					//테이블 getrowcount()하면서 메뉴랑 개수를 다 받는다
 					//주문한 메뉴와 개수를 비교한다. //내 생각엔 주문한 메뉴와 개수 변수를 전역으로 놔야할 것 같음... 아니면 마우스어댑터에 있는걸 클래스로 만들던지...
 					//맞으면 점수 올라가고 또 다시 게임 진행한다.
-					dispose();
+					
 				}catch(Exception ex){
 					System.out.println("SQLException:" + ex);
 				}
@@ -577,11 +623,11 @@ class Pos extends JFrame{
 
 		dmodel = new DefaultTableModel(colName, 0) {
 
-		public boolean isCellEditable(int row, int column) {
-
-		return false;
-
-		}
+			public boolean isCellEditable(int row, int column) {
+	
+			return false;
+	
+			}
 
 		};
 
