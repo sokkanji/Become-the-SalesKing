@@ -41,7 +41,7 @@ class Pos extends JFrame{
 	
 	private ImageIcon Inventory[]= {new ImageIcon("images/B_Inventory_btn.png"),new ImageIcon("images/A_Inventory_btn.png"),new ImageIcon("images/On_Inventory_btn.png")};
 	
-	private ImageIcon payment[] = {new ImageIcon("images/BeforeCheck.png"), new ImageIcon("images/AfterCheck.png"), new ImageIcon("images/OnCheck.png")};
+	private ImageIcon payment[] = {new ImageIcon("images/payment.png"), new ImageIcon("images/On_Payment_btn.png")};
 	private ImageIcon Init[]= {new ImageIcon("images/B_init.png"),new ImageIcon("images/A_init.png"),new ImageIcon("images/On_init.png")};
 	
 	private JButton Menu1 = new JButton(B_menu[0]);
@@ -525,12 +525,11 @@ class Pos extends JFrame{
 	
 		
 
-		payment_btn.setBounds(900,550,230,150);
+		payment_btn.setBounds(900,530,230,150);
 		payment_btn.setBorderPainted(false);
 		payment_btn.setFocusPainted(false);
 		payment_btn.setContentAreaFilled(false);
-		payment_btn.setPressedIcon(payment[1]);
-		payment_btn.setRolloverIcon(payment[2]);
+		payment_btn.setRolloverIcon(payment[1]);
 		add(payment_btn);
 		panel.add(payment_btn);
 		payment_btn.addActionListener(new ActionListener() {

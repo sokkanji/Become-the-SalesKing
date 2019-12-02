@@ -73,7 +73,6 @@ public class JPanelStory extends JPanel{
 		Name.setFont(new Font("배달의민족 주아", Font.BOLD, 45));
 		Name.setOpaque(false);
 
-		String name = Name.getText(); 
 	}
 	
 	public void paint(Graphics g) { // GUI화면 중 제일 첫번째 화면을 그려주는 함수
