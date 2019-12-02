@@ -155,10 +155,6 @@ public class JPanelOrder extends JPanel{
 		add(clickbtn);
 	}
 	
-	public void reciveTime(int n) {
-		
-	}
-	
 	public void paint(Graphics g) { // GUI화면 중 제일 첫번째 화면을 그려주는 함수
 		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImage에 1200X700의 이미지를 넣어줌
 		screenGraphic = screenImage.getGraphics(); // 겟그래픽을 이용해서 스크린그래픽을 얻어옴
