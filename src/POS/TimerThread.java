@@ -7,10 +7,9 @@ class TimerThread extends Thread {
 	private frame win;
 	private Pos p;
 	
-	public TimerThread(JLabel timerLabel, frame win, Pos p) { 
+	public TimerThread(JLabel timerLabel, frame win) { 
 		this.timerLabel = timerLabel;
 		this.win = win;
-		this.p = p;
 	}
 	
 	@Override
@@ -21,9 +20,8 @@ class TimerThread extends Thread {
 			n++; 
 			try {
 				Thread.sleep(1000); 
-				if(n==31) {
+				if(n==61) {
 					win.change("story");
-					p.dispose();
 				}
 			}
 			catch(InterruptedException e) {

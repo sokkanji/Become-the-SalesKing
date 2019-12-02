@@ -107,7 +107,8 @@ public class JPanelOrder extends JPanel{
 		add(timerLabel);
 		timerLabel.setBounds(1195, 86, 100, 100);
 
-		
+		TimerThread th = new TimerThread(timerLabel,win);
+		th.start();
 		
 		add(date);
 		date.setFont(new Font("Gothic", Font.ITALIC, 35));
@@ -132,8 +133,7 @@ public class JPanelOrder extends JPanel{
 		clickbtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e2) {
 				p = new Pos(Menu_txt[o_rand],Menu_txt[o_rand2],m_rand, m_rand2,win);
-				TimerThread th = new TimerThread(timerLabel,win,p);
-				th.start();
+				
 			}
 		});
 		add(clickbtn);

@@ -60,7 +60,7 @@ public class frame extends JFrame{
 			this.money=100000;
 			ordernum=0;
 			getContentPane().removeAll();
-			getContentPane().add(new JPanelIntro(this));
+			getContentPane().add(intro);
 			revalidate();
 			repaint();
 		}

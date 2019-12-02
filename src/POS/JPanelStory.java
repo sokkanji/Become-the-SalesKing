@@ -130,9 +130,9 @@ public class JPanelStory extends JPanel{
 						++add;
 					}
 				}
-				if(story_num==5) {
-					win.change("ending");
-				}
+//				if(story_num==5) {
+//					win.change("ending");
+//				}
 			}
 		});
 		
