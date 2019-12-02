@@ -9,6 +9,7 @@ public class frame extends JFrame{
 	public JPanelStory story = null;
 	public JPanelOrder order = null;
 	public JPanelHowTo howto = null;
+	public JPanelEnding ending = null;
 	static int ordernum=0;
 	int money;
 	
@@ -23,9 +24,10 @@ public class frame extends JFrame{
 	
 	public void change(String panelName) {
 		if(panelName.equals("story")) {
-			if(ordernum==6) {
+			if(ordernum==4) {
+				ordernum=0;
 				getContentPane().removeAll();
-				getContentPane().add(intro); //그냥 임시로 맨 처음으로 해놓음. 원래 마지막 페이지여야 함.
+				getContentPane().add(new JPanelEnding(this)); //그냥 임시로 맨 처음으로 해놓음. 원래 마지막 페이지여야 함.
 				revalidate();
 				repaint();
 			}else {
@@ -36,6 +38,12 @@ public class frame extends JFrame{
 				repaint();
 			}
 		}
+//		if(panelName.equals("story2")) {
+//			getContentPane().removeAll();
+//			getContentPane().add(new JPanelStory(this)); //그냥 임시로 맨 처음으로 해놓음. 원래 마지막 페이지여야 함.
+//			revalidate();
+//			repaint();
+//		}
 		if(panelName.equals("order")) {
 				getContentPane().removeAll();
 				getContentPane().add(new JPanelOrder(this,ordernum));
@@ -49,8 +57,16 @@ public class frame extends JFrame{
 			repaint();
 		}
 		if(panelName.equals("intro")) {
+			this.money=100000;
+			ordernum=0;
 			getContentPane().removeAll();
-			getContentPane().add(intro);
+			getContentPane().add(new JPanelIntro(this));
+			revalidate();
+			repaint();
+		}
+		if(panelName.equals("ending")) {
+			getContentPane().removeAll();
+			getContentPane().add(new JPanelEnding(this));
 			revalidate();
 			repaint();
 		}

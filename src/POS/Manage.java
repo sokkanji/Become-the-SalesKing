@@ -147,8 +147,8 @@ class Manage extends JFrame{
 					if(win.money<0) {
 						dispose();
 						pos.dispose();
-						win.change("intro"); //마지막 결과창으로 가야함. 실패함으로 떠야돼
-					}else {
+						win.change("ending"); //마지막 결과창으로 가야함. 실패함으로 떠야돼
+					}else { 
 						String sql = "select * from inventory";
 						pstmt = (PreparedStatement) conn.prepareStatement(sql);
 						ResultSet rs = pstmt.executeQuery();

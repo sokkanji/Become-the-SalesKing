@@ -18,6 +18,7 @@ public class JPanelOrder extends JPanel{
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
+	private Pos p;
 	
 	private ImageIcon monster[] = { new ImageIcon("images/monster1.png"), new ImageIcon("images/monster2.png"),
 			new ImageIcon("images/monster3.png"), new ImageIcon("images/monster4.png"),
@@ -91,7 +92,7 @@ public class JPanelOrder extends JPanel{
 		order_end2.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
 		
 		priceLabel.setBounds(265,15,400,160);
-		priceLabel.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+		priceLabel.setFont(new Font("배달의민족 도현", Font.BOLD, 25)); 
 		
 		add(order_txt[o_rand]);
 		add(order_txt2[o_rand2]);
@@ -106,8 +107,7 @@ public class JPanelOrder extends JPanel{
 		add(timerLabel);
 		timerLabel.setBounds(1195, 86, 100, 100);
 
-		TimerThread th = new TimerThread(timerLabel);
-		th.start();
+		
 		
 		add(date);
 		date.setFont(new Font("Gothic", Font.ITALIC, 35));
@@ -131,10 +131,15 @@ public class JPanelOrder extends JPanel{
 		clickbtn.setForeground(Color.BLUE);
 		clickbtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e2) {
-				new Pos(Menu_txt[o_rand],Menu_txt[o_rand2],m_rand, m_rand2,win);
+				p = new Pos(Menu_txt[o_rand],Menu_txt[o_rand2],m_rand, m_rand2,win);
+				TimerThread th = new TimerThread(timerLabel,win,p);
+				th.start();
 			}
 		});
 		add(clickbtn);
+		
+		
+		
 	}
 	
 	public void paint(Graphics g) { // GUI화면 중 제일 첫번째 화면을 그려주는 함수
