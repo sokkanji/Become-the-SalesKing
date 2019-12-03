@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-public class frame extends JFrame{
+public class frame2 extends JFrame{
 	public JPanelIntro intro = null;
 	public JPanelStory story = null;
 	public JPanelOrder order = null;
@@ -13,7 +13,7 @@ public class frame extends JFrame{
 	static int ordernum=0;
 	int money;
 	
-	frame(int money){
+	frame2(int money){
 		this.money = money;
 		Music introMusic = new Music("introMusic.MP3", true);
 		introMusic.start();
@@ -27,7 +27,7 @@ public class frame extends JFrame{
 			if(ordernum==4) {
 				ordernum=0;
 				getContentPane().removeAll();
-				getContentPane().add(new JPanelEnding(this)); //그냥 임시로 맨 처음으로 해놓음. 원래 마지막 페이지여야 함.
+				getContentPane().add(ending); //그냥 임시로 맨 처음으로 해놓음. 원래 마지막 페이지여야 함.
 				revalidate();
 				repaint();
 			}else {

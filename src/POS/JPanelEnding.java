@@ -10,29 +10,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class JPanelHowTo extends JPanel{
+public class JPanelEnding extends JPanel{
+	private frame win;
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
-	private Image Background = Toolkit.getDefaultToolkit().createImage("images/HowToPlayBackground.jpg");
+	private Image Background;
 	
-	private ImageIcon Backbtn[] = { new ImageIcon("images/BeforeBack.png"), new ImageIcon("images/AfterBack.png"),
-			new ImageIcon("images/OnBack.png") };
-	private JButton Bbtn = new JButton(Backbtn[0]);
-
-	public JPanelHowTo(frame win) {
+	private ImageIcon close[] = {new ImageIcon("images/CloseBtn.png"), new ImageIcon("images/OnCloseBtn.png")};
+	private JButton GoHome = new JButton(close[0]);
+	
+	JPanelEnding(frame win){
 		setLayout(null);
-		Bbtn.setBounds(1050, 630, 180, 110);
-		Bbtn.setBorderPainted(false);
-		Bbtn.setFocusPainted(false);
-		Bbtn.setContentAreaFilled(false);
-		add(Bbtn);
-		Bbtn.setPressedIcon(Backbtn[1]);
-		Bbtn.setRolloverIcon(Backbtn[2]);
-		Bbtn.addActionListener(new ActionListener() {
+		if(win.money<0) Background = Toolkit.getDefaultToolkit().createImage("images/fail.jpg");
+		else Background=Toolkit.getDefaultToolkit().createImage("images/success.jpg");
+		
+		add(GoHome);
+		GoHome.setBounds(600,360,250,250);
+		GoHome.setBorderPainted(false);
+		GoHome.setFocusPainted(false);
+		GoHome.setContentAreaFilled(false);
+		GoHome.setRolloverIcon(close[1]);
+		GoHome.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				win.change("intro");
+				System.exit(0);
 			}
 		});
 	}
@@ -50,3 +52,4 @@ public class JPanelHowTo extends JPanel{
 		this.repaint(); // 전체화면 이미지를 매 순간마다 그려줌, 프로그램 시작~종료까지 반복되며 화면에 그려줌.
 	}
 }
+

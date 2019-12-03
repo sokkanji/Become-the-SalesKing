@@ -1,5 +1,8 @@
 package POS;
 
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -9,14 +12,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import com.mysql.jdbc.PreparedStatement;
@@ -49,8 +45,7 @@ class Manage extends JFrame{
 								"룩앳 마이노즈 아메리카노","매쉬 핫솟 포테이토 쿠키","씨쁠씨쁠 사람일까요 쿠키"};
 	final int[] menu_price= {4000,2500,2500,5500,5000,4000,3000,3500,3500};
 	
-//	JButton[] btn = new JButton[9];
-	
+
 	JPanel panel = new JPanel();
 	JLabel label1 = new JLabel("을 주문하시겠습니까?");
 	JLabel label2 = new JLabel("?");
@@ -87,10 +82,17 @@ class Manage extends JFrame{
 
 		// model = new MyTableModel();
 		
+		
+		
+
 		dmodel = new DefaultTableModel(colName, 0) {
+
 			public boolean isCellEditable(int row, int column) {
-				return false;
+	
+			return false;
+	
 			}
+
 		};
 		
 		table = new JTable(dmodel);
@@ -101,7 +103,6 @@ class Manage extends JFrame{
 		add(scroll);
 	
 		panel.setLayout(null);
-		
 		for(int i =0; i<btn_Title.length; i++){
 			panel.add(M_menuBtn[i]=new JButton(m_menu[i]));
 			M_menuBtn[i].setRolloverIcon(On_menu[i]);
@@ -171,8 +172,8 @@ class Manage extends JFrame{
 					if(win.money<0) {
 						dispose();
 						pos.dispose();
-						win.change("intro"); //마지막 결과창으로 가야함. 실패함으로 떠야돼
-					}else {
+						win.change("ending"); //마지막 결과창으로 가야함. 실패함으로 떠야돼
+					}else { 
 						String sql = "select * from inventory";
 						pstmt = (PreparedStatement) conn.prepareStatement(sql);
 						ResultSet rs = pstmt.executeQuery();
@@ -204,13 +205,16 @@ class Manage extends JFrame{
 		CancelBtn.setRolloverIcon(Cancel[1]);
 		add(CancelBtn);
 		CancelBtn.addActionListener(new ActionListener() {
+			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-	
-		add(panel);	
+		
+		
+		add(panel);
+		
 		
 		setSize(1500,500); 
         setResizable(false);

@@ -18,38 +18,39 @@ public class JPanelOrder extends JPanel{
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
+	private Pos p;
 	
 	private ImageIcon monster[] = { new ImageIcon("images/monster1.png"), new ImageIcon("images/monster2.png"),
 			new ImageIcon("images/monster3.png"), new ImageIcon("images/monster4.png"),
 			new ImageIcon("images/monster5.png") };
 	
 	private JButton clickbtn = new JButton("Click!");
-	
 	int o_rand, o_rand2, m_rand, m_rand2;
 	
 	// 나가기 버튼 이미지
-	public static ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
-	public static JButton Endbtn = new JButton(End[0]);
-	
+		public static ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
+		public static JButton Endbtn = new JButton(End[0]);
+
+
 	JPanelOrder(frame win, int ordernum)
 	{	
 		this.win=win;
 		setLayout(null);
 	
 		// 종료버튼
-		Endbtn.setRolloverIcon(End[1]);
-		Endbtn.setBounds(1250, 10, 100, 80);
-		Endbtn.setBorderPainted(false);
-		Endbtn.setFocusPainted(false);
-		Endbtn.setContentAreaFilled(false);
-		add(Endbtn);
-		Endbtn.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-					System.exit(0);
-			}
-		});
-						
+				Endbtn.setRolloverIcon(End[1]);
+				Endbtn.setBounds(1250, 10, 100, 80);
+				Endbtn.setBorderPainted(false);
+				Endbtn.setFocusPainted(false);
+				Endbtn.setContentAreaFilled(false);
+				add(Endbtn);
+				Endbtn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mousePressed(MouseEvent e) {
+							System.exit(0);
+					}
+				});			
+				
 		JLabel date = new JLabel(String.valueOf(ordernum));
 		//JLabel money=new JLabel();
 		//주문 메뉴 이름 붙일 라벨
@@ -108,7 +109,7 @@ public class JPanelOrder extends JPanel{
 		order_end2.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
 		
 		priceLabel.setBounds(265,15,400,160);
-		priceLabel.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
+		priceLabel.setFont(new Font("배달의민족 도현", Font.BOLD, 25)); 
 		
 		add(order_txt[o_rand]);
 		add(order_txt2[o_rand2]);
@@ -125,7 +126,6 @@ public class JPanelOrder extends JPanel{
 
 		TimerThread th = new TimerThread(timerLabel,win);
 		th.start();
-
 		
 		add(date);
 		date.setFont(new Font("Gothic", Font.ITALIC, 35));
@@ -149,10 +149,14 @@ public class JPanelOrder extends JPanel{
 		clickbtn.setForeground(Color.BLUE);
 		clickbtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e2) {
-				new Pos(Menu_txt[o_rand],Menu_txt[o_rand2],m_rand, m_rand2,win);
+				p = new Pos(Menu_txt[o_rand],Menu_txt[o_rand2],m_rand, m_rand2,win);
+				
 			}
 		});
 		add(clickbtn);
+		
+		
+		
 	}
 	
 	public void paint(Graphics g) { // GUI화면 중 제일 첫번째 화면을 그려주는 함수

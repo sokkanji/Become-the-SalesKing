@@ -1,7 +1,5 @@
 package POS;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -41,8 +39,10 @@ class Pos extends JFrame{
 	
 	private ImageIcon Inventory[]= {new ImageIcon("images/B_Inventory_btn.png"),new ImageIcon("images/A_Inventory_btn.png"),new ImageIcon("images/On_Inventory_btn.png")};
 	
-	private ImageIcon payment[] = {new ImageIcon("images/payment.png"), new ImageIcon("images/On_Payment_btn.png")};
 	private ImageIcon Init[]= {new ImageIcon("images/B_init.png"),new ImageIcon("images/A_init.png"),new ImageIcon("images/On_init.png")};
+	
+	private ImageIcon payment[] = {new ImageIcon("images/payment.png"), new ImageIcon("images/On_Payment_btn.png")};
+
 	
 	private JButton Menu1 = new JButton(B_menu[0]);
 	private JButton Menu2 = new JButton(B_menu[1]);
@@ -88,7 +88,7 @@ class Pos extends JFrame{
         // 주의, 여기서 setDefaultCloseOperation() 정의를 하지 말아야 한다
         // 정의하게 되면 새 창을 닫으면 모든 창과 프로그램이 동시에 꺼진다
 		this.win = win;
-		this.pos = this;
+		this.pos = this; 
 		if(win.money<0) dispose();
 		
 		JPanel panel = new JPanel();
@@ -522,20 +522,20 @@ class Pos extends JFrame{
 					}
 			}
 		});
-	
 		
 
 		payment_btn.setBounds(900,530,230,150);
-		payment_btn.setBorderPainted(false);
-		payment_btn.setFocusPainted(false);
-		payment_btn.setContentAreaFilled(false);
-		payment_btn.setRolloverIcon(payment[1]);
-		add(payment_btn);
-		panel.add(payment_btn);
-		payment_btn.addActionListener(new ActionListener() {
+			payment_btn.setBorderPainted(false);
+			payment_btn.setFocusPainted(false);
+			payment_btn.setContentAreaFilled(false);
+			payment_btn.setRolloverIcon(payment[1]);
+			add(payment_btn);
+			panel.add(payment_btn);
+			payment_btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
 				
 				Connection conn = null;
 				PreparedStatement pstmt = null;
@@ -560,9 +560,7 @@ class Pos extends JFrame{
 							num[i-1] = rs.getInt(i)-count[i-1];
 //							System.out.println(String.valueOf(num[i-1]));
 							if(num[i-1]<0) {
-								JOptionPane.showMessageDialog(null, 
-										btn_Title[i-1], "재고가 없습니다.", 
-										JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(null, btn_Title[i-1], "재고가 없습니다.", JOptionPane.ERROR_MESSAGE);
 								continue;
 							}else {
 								pstmt.setInt(i, num[i-1]);
@@ -570,24 +568,26 @@ class Pos extends JFrame{
 						}
 					}
 					pstmt.executeUpdate();
-					
+					System.out.println(order_menu);
+					System.out.println(order_menu2);
+					cnt=0;
 					for(int i=0;i<table.getRowCount();i++) {
 						System.out.println(table.getRowCount());
 						System.out.println((table.getValueAt(i, 1)));
 						System.out.println((table.getValueAt(i, 2)));
+						
 						//순서가 바뀌어도 되게 해야함..
-						if(((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)))
-								||((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2)))) {
+						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)) ) {
 							cnt++;
 							System.out.println("ok1");
-						}else if(((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2)))
-								||((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)))) {
+						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))
+							 ) {
 							cnt++;
 							System.out.println("ok2");
 						}
 						
 					}
-					
+					System.out.println("cnt=="+cnt);
 					if(cnt==table.getRowCount()) {
 						System.out.println("ok3");
 						win.money+=t_price;
@@ -595,12 +595,16 @@ class Pos extends JFrame{
 						dispose();
 					}else if(cnt!=table.getRowCount()) {
 						win.money-=t_price;
-						if(win.money<0) {
+						int sum = win.money;
+						System.out.println(sum);
+						if(sum<0) {
+							System.out.println("bbbb");
 							dispose();
-							win.change("intro");//게임실패.. 마지막 게임 결과 페이지
+							win.change("ending");//게임실패.. 마지막 게임 결과 페이지
+						}else {
+							win.change("story");
+							dispose();
 						}
-						win.change("story");
-						dispose();
 					}
 					//주문이 맞는지 아닌지 판단 
 					//테이블 getrowcount()하면서 메뉴랑 개수를 다 받는다
