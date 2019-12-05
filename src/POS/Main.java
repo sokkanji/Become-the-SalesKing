@@ -14,6 +14,7 @@ public class Main {
 		win.story = new JPanelStory(win);
 		//win.order = new JPanelOrder(win);
 		win.howto = new JPanelHowTo(win);
+		win.ending = new JPanelEnding(win);
 		
 		win.add(win.intro);
 		win.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

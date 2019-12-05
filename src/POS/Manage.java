@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.ImageIcon;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,14 +23,29 @@ class Manage extends JFrame{
 	PreparedStatement pstmt = null;
 	private ResultSet viewRS;
 	
+	private ImageIcon m_menu[] = {new ImageIcon("images/M_menu1.png"),new ImageIcon("images/M_menu2.png"),new ImageIcon("images/M_menu3.png"),
+			new ImageIcon("images/M_menu4.png"),new ImageIcon("images/M_menu5.png"),new ImageIcon("images/M_menu6.png"),
+			new ImageIcon("images/M_menu7.png"),new ImageIcon("images/M_menu8.png"),new ImageIcon("images/M_menu9.png")};
+
+	private ImageIcon On_menu[] = {new ImageIcon("images/M_OnMenu1.png"),new ImageIcon("images/M_OnMenu2.png"),new ImageIcon("images/M_OnMenu3.png"),
+				new ImageIcon("images/M_OnMenu4.png"),new ImageIcon("images/M_OnMenu5.png"),new ImageIcon("images/M_OnMenu6.png"),
+				new ImageIcon("images/M_OnMenu7.png"),new ImageIcon("images/M_OnMenu8.png"),new ImageIcon("images/M_OnMenu9.png")};
+	
+	private JButton M_menuBtn[] = new JButton[9];
+
+	
+	private ImageIcon Order[] = {new ImageIcon("images/order.png"), new ImageIcon("images/OnOrder.png")};
+	private ImageIcon Cancel[] = { new ImageIcon("images/cancel.png"), new ImageIcon("images/OnCancel.png")};
+	
+	private JButton OrderBtn = new JButton(Order[0]);
+	private JButton CancelBtn = new JButton(Cancel[0]);
+	
 	final String[] btn_Title= {"눈알 네 개 쉐이크","베리베리 블루베리 마카롱","치키치키 초코 마카롱",
 								"아빠와 나는 외계인 라떼","삐립삐립 지구행성맛 에이드","슈스 스트로베리 쉐이크",
 								"룩앳 마이노즈 아메리카노","매쉬 핫솟 포테이토 쿠키","씨쁠씨쁠 사람일까요 쿠키"};
 	final int[] menu_price= {4000,2500,2500,5500,5000,4000,3000,3500,3500};
 	
-	JButton[] btn = new JButton[9];
-	JButton order_btn = new JButton("주문");
-	JButton cancel_btn = new JButton("취소");
+
 	JPanel panel = new JPanel();
 	JLabel label1 = new JLabel("을 주문하시겠습니까?");
 	JLabel label2 = new JLabel("?");
@@ -88,17 +104,22 @@ class Manage extends JFrame{
 	
 		panel.setLayout(null);
 		for(int i =0; i<btn_Title.length; i++){
-			panel.add(btn[i]=new JButton(btn_Title[i]));
-			btn[i].setSize(200,50);
-			btn[i].setLocation(60+(250*i), 150);
+			panel.add(M_menuBtn[i]=new JButton(m_menu[i]));
+			M_menuBtn[i].setRolloverIcon(On_menu[i]);
+			M_menuBtn[i].setSize(220,120);
+			M_menuBtn[i].setLocation(60+(250*i), 130);
+			M_menuBtn[i].setBorderPainted(false);
+			M_menuBtn[i].setFocusPainted(false);
+			M_menuBtn[i].setContentAreaFilled(false);
+			
 			if(i>4) {
-				btn[i].setLocation(60+(250*(i-5)), 230);
+				M_menuBtn[i].setLocation(60+(250*(i-5)), 210);
 			}
 		}
 		
 		for(int i=0; i<btn_Title.length; i++) {
 			int num=i;
-			btn[i].addActionListener(new ActionListener() {
+			M_menuBtn[i].addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 						label2.setText(btn_Title[num]);
@@ -106,21 +127,25 @@ class Manage extends JFrame{
 				}});
 		}
 		
-		label2.setBounds(580, 300, 200, 50);
+		label2.setBounds(580, 320, 200, 50);
 		add(label2);
 		
-		label1.setBounds(750, 300, 200, 50);
+		label1.setBounds(750, 320, 200, 50);
 		add(label1);
 		
-		label3.setBounds(600,350,100,50);
+		label3.setBounds(600,370,100,50);
 		add(label3);
 		
-		tf.setBounds(700,360,200,30);
+		tf.setBounds(700,380,200,30);
 		add(tf);
 		
-		order_btn.setBounds(920,360,80,30);
-		add(order_btn);
-		order_btn.addActionListener(new ActionListener() {
+		OrderBtn.setBounds(900,340,170,110);
+		OrderBtn.setBorderPainted(false);
+		OrderBtn.setFocusPainted(false);
+		OrderBtn.setContentAreaFilled(false);
+		OrderBtn.setRolloverIcon(Order[1]);
+		add(OrderBtn);
+		OrderBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -173,9 +198,13 @@ class Manage extends JFrame{
 			}
 		});
 		
-		cancel_btn.setBounds(1350,370,80,50);
-		add(cancel_btn);
-		cancel_btn.addActionListener(new ActionListener() {
+		CancelBtn.setBounds(1350,350,150,110);
+		CancelBtn.setBorderPainted(false);
+		CancelBtn.setFocusPainted(false);
+		CancelBtn.setContentAreaFilled(false);
+		CancelBtn.setRolloverIcon(Cancel[1]);
+		add(CancelBtn);
+		CancelBtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 public class JPanelHowTo extends JPanel{
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
-	private Image Background = Toolkit.getDefaultToolkit().createImage("images/HowToPlaybackground.jpg");
+	private Image Background = Toolkit.getDefaultToolkit().createImage("images/howto.jpg");
 	
 	private ImageIcon Backbtn[] = { new ImageIcon("images/BeforeBack.png"), new ImageIcon("images/AfterBack.png"),
 			new ImageIcon("images/OnBack.png") };

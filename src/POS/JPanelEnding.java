@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -14,17 +15,24 @@ public class JPanelEnding extends JPanel{
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
 	private Image Background;
+	private ImageIcon exit[] = {new ImageIcon("images/exitBbtn.png"), new ImageIcon("images/exitAbtn.png")}; 
 	
-	private JButton GoHome = new JButton("종료하기");
+	private JButton exitbtn = new JButton(exit[0]);
 	
 	JPanelEnding(frame win){
 		setLayout(null);
 		if(win.money<0) Background = Toolkit.getDefaultToolkit().createImage("images/fail.jpg");
 		else Background=Toolkit.getDefaultToolkit().createImage("images/success.jpg");
 		
-		add(GoHome);
-		GoHome.setBounds(600,360,150,100);
-		GoHome.addActionListener(new ActionListener() {
+		
+		exitbtn.setBounds(600,360,200,150);
+		exitbtn.setBorderPainted(false);
+		exitbtn.setFocusPainted(false);
+		exitbtn.setContentAreaFilled(false);
+		exitbtn.setPressedIcon(exit[1]);
+		exitbtn.setRolloverIcon(exit[0]);
+		add(exitbtn);
+		exitbtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {

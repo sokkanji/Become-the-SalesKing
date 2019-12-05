@@ -41,6 +41,9 @@ class Pos extends JFrame{
 	
 	private ImageIcon Init[]= {new ImageIcon("images/B_init.png"),new ImageIcon("images/A_init.png"),new ImageIcon("images/On_init.png")};
 	
+	private ImageIcon payment[] = {new ImageIcon("images/payment.png"), new ImageIcon("images/On_Payment_btn.png")};
+
+	
 	private JButton Menu1 = new JButton(B_menu[0]);
 	private JButton Menu2 = new JButton(B_menu[1]);
 	private JButton Menu3 = new JButton(B_menu[2]);
@@ -55,7 +58,7 @@ class Pos extends JFrame{
 	
 	private JButton Init_btn = new JButton(Init[0]);
 	
-	private JButton payment_btn = new JButton("°áÁ¦");
+	private JButton payment_btn = new JButton(payment[0]);
 	
 	private JLabel total_label = new JLabel("ÃÑÇÕ : ");
 	private JLabel total_price = new JLabel("0");
@@ -86,6 +89,7 @@ class Pos extends JFrame{
         // Á¤ÀÇÇÏ°Ô µÇ¸é »õ Ã¢À» ´ÝÀ¸¸é ¸ðµç Ã¢°ú ÇÁ·Î±×·¥ÀÌ µ¿½Ã¿¡ ²¨Áø´Ù
 		this.win = win;
 		this.pos = this; 
+		setUndecorated(true);
 		if(win.money<0) dispose();
 		
 		JPanel panel = new JPanel();
@@ -388,7 +392,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä Äí±â")) {
+						if(table.getValueAt(i, 1).equals("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°")) {
 							table.setValueAt(count[7]+=1, i, 2);
 							table.setValueAt(price*count[7], i, 3);
 						}
@@ -396,7 +400,7 @@ class Pos extends JFrame{
 					if(count[7]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä Äí±â");
+						record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°");
 						record.addElement(++count[7]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -404,7 +408,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä Äí±â");
+					record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°");
 					record.addElement(++count[7]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -520,9 +524,15 @@ class Pos extends JFrame{
 			}
 		});
 		
-		payment_btn.setBounds(900,550,230,100);
-		add(payment_btn);
-		payment_btn.addActionListener(new ActionListener() {
+
+		payment_btn.setBounds(900,530,230,150);
+			payment_btn.setBorderPainted(false);
+			payment_btn.setFocusPainted(false);
+			payment_btn.setContentAreaFilled(false);
+			payment_btn.setRolloverIcon(payment[1]);
+			add(payment_btn);
+			panel.add(payment_btn);
+			payment_btn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -554,7 +564,9 @@ class Pos extends JFrame{
 								JOptionPane.showMessageDialog(null, 
 										btn_Title[i-1], "Àç°í°¡ ¾ø½À´Ï´Ù.", 
 										JOptionPane.ERROR_MESSAGE);
+								cnt=0;
 								continue;
+								//break;
 							}else {
 								pstmt.setInt(i, num[i-1]);
 							}
@@ -563,19 +575,22 @@ class Pos extends JFrame{
 					pstmt.executeUpdate();
 					System.out.println(order_menu);
 					System.out.println(order_menu2);
+					System.out.println(order_menu_cnt);
+					System.out.println(order_menu_cnt2);
 					cnt=0;
 					for(int i=0;i<table.getRowCount();i++) {
-						System.out.println(table.getRowCount());
 						System.out.println((table.getValueAt(i, 1)));
 						System.out.println((table.getValueAt(i, 2)));
 						
 						//¼ø¼­°¡ ¹Ù²î¾îµµ µÇ°Ô ÇØ¾ßÇÔ..
 						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)) ) {
 							cnt++;
+							System.out.println(i);
 							System.out.println("ok1");
 						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))
 							 ) {
 							cnt++;
+							System.out.println(i);
 							System.out.println("ok2");
 						}
 						

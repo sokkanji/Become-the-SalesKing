@@ -6,6 +6,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -18,15 +20,17 @@ public class JPanelStory extends JPanel{
 	private frame win;
 	private Image screenImage;
 	private Graphics screenGraphic; // 전체화면에 대한 두 인스턴스
-	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Storybackground.jpg");
+	private Image Background = Toolkit.getDefaultToolkit().createImage("images/#1.jpg");
 	
 	private int story_num=0;
 	private int add=0;
 	private int change = 0;
 	
+	private ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
 	private ImageIcon Nextbtn[] = { new ImageIcon("images/ANext.png"), new ImageIcon("images/BNext.png"),
 			new ImageIcon("images/OnNext.png") }; ///
 	
+	private JButton Endbtn = new JButton(End[0]);
 	private JButton Nbtn = new JButton(Nextbtn[0]);
 	
 	private String[] story1_text = {"평범한 고등학생","평범한 일상.","평소와 똑같이 눈을 떴더니 지구가 보인다."
@@ -65,6 +69,19 @@ public class JPanelStory extends JPanel{
 		this.win=win;
 		setLayout(null);
 		
+		Endbtn.setRolloverIcon(End[1]);
+		Endbtn.setBounds(1250, 10, 100, 80);
+		Endbtn.setBorderPainted(false);
+		Endbtn.setFocusPainted(false);
+		Endbtn.setContentAreaFilled(false);
+		add(Endbtn);
+		Endbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		
 		add(story1);
 		story1.setBounds(50,625,1100,100);
 		story1.setFont(new Font("배달의민족 도현", Font.BOLD, 25));
@@ -84,7 +101,7 @@ public class JPanelStory extends JPanel{
 						if(add==story1_text.length) {
 							add=0;
 							++story_num;
-							Background = Toolkit.getDefaultToolkit().createImage("images/cafe.jpg"); //카페이미지로 변경
+							Background = Toolkit.getDefaultToolkit().createImage("images/#2.jpg"); //카페이미지로 변경
 						}else {
 							story1.setText(story1_text[add]);
 							++add;
@@ -94,6 +111,7 @@ public class JPanelStory extends JPanel{
 					if(add==story1_1_text.length) {
 						add=0;
 						story_num++;
+						Background = Toolkit.getDefaultToolkit().createImage("images/#4.jpg");
 						win.change("order");
 					}else {
 						story1.setText(story1_1_text[add]);
@@ -104,6 +122,7 @@ public class JPanelStory extends JPanel{
 					if(add==story2_text.length) {
 						add=0;
 						story_num++;
+						Background = Toolkit.getDefaultToolkit().createImage("images/#3.jpg");
 						win.change("order");
 					}else {
 						story1.setText(story2_text[add]);

@@ -23,8 +23,10 @@ public class JPanelOrder extends JPanel{
 	private ImageIcon monster[] = { new ImageIcon("images/monster1.png"), new ImageIcon("images/monster2.png"),
 			new ImageIcon("images/monster3.png"), new ImageIcon("images/monster4.png"),
 			new ImageIcon("images/monster5.png") };
+	private ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
 	
 	private JButton clickbtn = new JButton("Click!");
+	private JButton Endbtn = new JButton(End[0]);
 	
 	int o_rand, o_rand2, m_rand, m_rand2;
 	
@@ -41,7 +43,7 @@ public class JPanelOrder extends JPanel{
 		JLabel order_txt2[]=new JLabel[10];
 		//메뉴이름
 		String Menu_txt[]= {"눈알 네 개 쉐이크", "치키치키 초코 마카롱", "슈스 스토리 베리 쉐이크", "베리베리 블루베리 마카롱", "아빠와 나는 외계인 라떼",
-				"삐립삐립 지구행성맛 에이드", "슈스 스토리베리 쉐이크", "룩앳 마이노즈 아메리카노", "매쉬 핫솟 포테이토 쿠키", "씨쁠씨쁠 사람일까요쿠키"};
+				"삐립삐립 지구행성맛 에이드", "슈스 스토리베리 쉐이크", "룩앳 마이노즈 아메리카노", "매쉬 핫솟 포테이토 쿠키", "씨쁠씨쁠 사람일까요 쿠키"};
 		JLabel timerLabel = new JLabel();
 		JLabel monsterLa[]=new JLabel[5];
 		
@@ -122,7 +124,20 @@ public class JPanelOrder extends JPanel{
 		monsterLa[r_monster].setBounds(50, 95, 500, 500);
 		add(monsterLa[r_monster]);
 		
-
+		//종료버튼
+		Endbtn.setRolloverIcon(End[1]);
+		Endbtn.setBounds(1250, 10, 100, 80);
+		Endbtn.setBorderPainted(false);
+		Endbtn.setFocusPainted(false);
+		Endbtn.setContentAreaFilled(false);
+		add(Endbtn);
+		Endbtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				System.exit(0);
+			}
+		});
+		
 		// click 버튼 넣기
 		clickbtn.setBounds(927, 315, 130, 80);
 		clickbtn.setBorderPainted(false);
