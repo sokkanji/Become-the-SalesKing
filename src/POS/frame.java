@@ -18,7 +18,7 @@ public class frame extends JFrame{
 		Music introMusic = new Music("introMusic.MP3", true);
 		introMusic.start();
 		
-		setUndecorated(true); // �������� �� �⺻������ ���̴� �޴��ٰ� �� ����.
+		setUndecorated(true); // 실행했을 때 기본적으로 보이는 메뉴바가 안 보임.
 		setBackground(new Color(0, 0, 0, 0));
 	}
 	
@@ -27,7 +27,7 @@ public class frame extends JFrame{
 			if(ordernum==4) {
 				//ordernum=0;
 				getContentPane().removeAll();
-				getContentPane().add(ending); //�׳� �ӽ÷� �� ó������ �س���. ���� ������ ���������� ��.
+				getContentPane().add(ending);
 				revalidate();
 				repaint();
 			}else {
@@ -38,12 +38,6 @@ public class frame extends JFrame{
 				repaint();
 			}
 		}
-//		if(panelName.equals("story2")) {
-//			getContentPane().removeAll();
-//			getContentPane().add(new JPanelStory(this)); //�׳� �ӽ÷� �� ó������ �س���. ���� ������ ���������� ��.
-//			revalidate();
-//			repaint();
-//		}
 		if(panelName.equals("order")) {
 				getContentPane().removeAll();
 				getContentPane().add(new JPanelOrder(this,ordernum));

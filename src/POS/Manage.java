@@ -40,16 +40,16 @@ class Manage extends JFrame{
 	private JButton OrderBtn = new JButton(Order[0]);
 	private JButton CancelBtn = new JButton(Cancel[0]);
 	
-	final String[] btn_Title= {"´«¾Ë ³× °³ ½¦ÀÌÅ©","º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ","Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ",
-								"¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼","»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå","½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©",
-								"·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Ş¸®Ä«³ë","¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°","¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°"};
+	final String[] btn_Title= {"ëˆˆì•Œ ë„¤ ê°œ ì‰ì´í¬","ë² ë¦¬ë² ë¦¬ ë¸”ë£¨ë² ë¦¬ ë§ˆì¹´ë¡±","ì¹˜í‚¤ì¹˜í‚¤ ì´ˆì½” ë§ˆì¹´ë¡±",
+								"ì•„ë¹ ì™€ ë‚˜ëŠ” ì™¸ê³„ì¸ ë¼ë–¼","ì‚ë¦½ì‚ë¦½ ì§€êµ¬í–‰ì„±ë§› ì—ì´ë“œ","ìŠˆìŠ¤ ìŠ¤íŠ¸ë¡œë² ë¦¬ ì‰ì´í¬",
+								"ë£©ì•³ ë§ˆì´ë…¸ì¦ˆ ì•„ë©”ë¦¬ì¹´ë…¸","ë§¤ì‰¬ í•«ì†Ÿ í¬í…Œì´í†  ì¿ í‚¤","ì”¨ì ì”¨ì  ì‚¬ëŒì¼ê¹Œìš” ì¿ í‚¤"};
 	final int[] menu_price= {4000,2500,2500,5500,5000,4000,3000,3500,3500};
 	
 
 	JPanel panel = new JPanel();
-	JLabel label1 = new JLabel("À» ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î?");
-	JLabel label2 = new JLabel("?");
-	JLabel label3 = new JLabel("ÁÖ¹® ¼ö·® ÀÔ·Â : ");
+	JLabel label1 = new JLabel("ì£¼ë¬¸");
+	JLabel label2 = new JLabel("ì·¨ì†Œ");
+	JLabel label3 = new JLabel("ì„ ì£¼ë¬¸í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 	JTextField tf = new JTextField();
 	DefaultTableModel dmodel;
 	JTable table;
@@ -57,28 +57,28 @@ class Manage extends JFrame{
 	Vector colName = new Vector();
 	Vector record;
 	
-	int num_index;//¼±ÅÃÇÑ ¹öÆ°¿¡ µû¶ó btn_Title ¾µ¼öÀÖ´Â º¯¼ö
+	int num_index;//ì„ íƒí•œ ë²„íŠ¼ì— ë”°ë¼ btn_Title ì“¸ìˆ˜ìˆëŠ” ë³€ìˆ˜
 	
 	Manage(frame win, Pos pos){
 		
 		
-		colName.add("´«¾Ë ³× °³ ½¦ÀÌÅ©"); //0
+		colName.add("ëˆˆì•Œ ë„¤ ê°œ ì‰ì´í¬"); //0
 
-		colName.add("º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ"); //1
+		colName.add("ë² ë¦¬ë² ë¦¬ ë¸”ë£¨ë² ë¦¬ ë§ˆì¹´ë¡±"); //1
 		
-		colName.add("Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ"); //2
+		colName.add("ì¹˜í‚¤ì¹˜í‚¤ ì´ˆì½” ë§ˆì¹´ë¡±"); //2
 
-		colName.add("¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼"); //3
+		colName.add("ì•„ë¹ ì™€ ë‚˜ëŠ” ì™¸ê³„ì¸ ë¼ë–¼"); //3
 		
-		colName.add("»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå"); //4
+		colName.add("ì‚ë¦½ì‚ë¦½ ì§€êµ¬í–‰ì„±ë§› ì—ì´ë“œ"); //4
 		
-		colName.add("½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©"); //5
+		colName.add("ìŠˆìŠ¤ ìŠ¤íŠ¸ë¡œë² ë¦¬ ì‰ì´í¬"); //5
 		
-		colName.add("·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Ş¸®Ä«³ë"); //6
+		colName.add("ë£©ì•³ ë§ˆì´ë…¸ì¦ˆ ì•„ë©”ë¦¬ì¹´ë…¸"); //6
 		
-		colName.add("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°"); //7
+		colName.add("ë§¤ì‰¬ í•«ì†Ÿ í¬í…Œì´í†  ì¿ í‚¤"); //7
 		
-		colName.add("¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°"); //8
+		colName.add("ì”¨ì ì”¨ì  ì‚¬ëŒì¼ê¹Œìš” ì¿ í‚¤"); //8
 
 		// model = new MyTableModel();
 		
@@ -153,7 +153,7 @@ class Manage extends JFrame{
 				try {	
 					Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
 					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");     
-					System.out.println("DB ¿¬°á ¿Ï·á");			
+					System.out.println("DB ì—°ê²° ì™„ë£Œ");			
 				}catch(Exception ex) {
 			        System.out.println("Exception:" + ex);
 			    }
@@ -172,7 +172,7 @@ class Manage extends JFrame{
 					if(win.money<0) {
 						dispose();
 						pos.dispose();
-						win.change("ending"); //¸¶Áö¸· °á°úÃ¢À¸·Î °¡¾ßÇÔ. ½ÇÆĞÇÔÀ¸·Î ¶°¾ßµÅ
+						win.change("ending"); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¢ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ßµï¿½
 					}else { 
 						String sql = "select * from inventory";
 						pstmt = (PreparedStatement) conn.prepareStatement(sql);
@@ -186,7 +186,7 @@ class Manage extends JFrame{
 						pstmt.executeUpdate();
 						
 						JOptionPane.showMessageDialog(null, 
-								"ÁÖ¹®ÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.", "¾Ë¸²", 
+								"ì£¼ë¬¸ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.", "ì•Œë¦¼", 
 								JOptionPane.ERROR_MESSAGE);
 					}
 					

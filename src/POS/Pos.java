@@ -63,9 +63,9 @@ class Pos extends JFrame{
 	private JLabel total_label = new JLabel("���� : ");
 	private JLabel total_price = new JLabel("0");
 	
-	final String[] btn_Title= {"���� �� �� ����ũ","�������� ���纣�� ��ī��","ġŰġŰ ���� ��ī��",
-			"�ƺ��� ���� �ܰ��� ��","�߸��߸� �����༺�� ���̵�","���� ��Ʈ�κ��� ����ũ",
-			"��� ���̳��� �Ƹ޸�ī��","�Ž� �ּ� �������� ��Ű","���ܾ��� ����ϱ�� ��Ű"};
+	final String[] btn_Title= {"눈알 네 개 쉐이크","베리베리 블루베리 마카롱","치키치키 초코 마카롱",
+			"아빠와 나는 외계인 라떼","삐립삐립 지구행성맛 에이드","슈스 스트로베리 쉐이크",
+			"룩앳 마이노즈 아메리카노","매쉬 핫솟 포테이토 쿠키","씨쁠씨쁠 사람일까요 쿠키"};
 
 	// MyTableModel model;
 	Manage m1;
@@ -76,17 +76,17 @@ class Pos extends JFrame{
 	JTable table;
 	JScrollPane scroll;
 	Vector colName = new Vector();
-	int selRow; // ������ ��
+	int selRow; // 선택한 셀
 	String bar = "";
-	int no; //���̺��� ���� ��ȣ
+	int no; //테이블에 들어가는 번호
 	int count[]= {0,0,0,0,0,0,0,0,0};
-	int t_price=0;//�� ����
+	int t_price=0;//총 가격
 	Vector record;
 	Vector vec;
 
 	Pos(String order_menu,String order_menu2,int order_menu_cnt, int order_menu_cnt2, frame win){
-        // ����, ���⼭ setDefaultCloseOperation() ���Ǹ� ���� ���ƾ� �Ѵ�
-        // �����ϰ� �Ǹ� �� â�� ������ ��� â�� ���α׷��� ���ÿ� ������
+		// 주의, 여기서 setDefaultCloseOperation() 정의를 하지 말아야 한다
+        // 정의하게 되면 새 창을 닫으면 모든 창과 프로그램이 동시에 꺼진다
 		this.win = win;
 		this.pos = this; 
 		setUndecorated(true);
@@ -112,7 +112,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("���� �� �� ����ũ")) {
+						if(table.getValueAt(i, 1).equals("눈알 네 개 쉐이크")) {
 							table.setValueAt(count[0]+=1, i, 2);
 							table.setValueAt(price*count[0], i, 3);
 						}
@@ -120,7 +120,7 @@ class Pos extends JFrame{
 					if(count[0]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("���� �� �� ����ũ");
+						record.addElement("눈알 네 개 쉐이크");
 						record.addElement(++count[0]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -128,7 +128,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("���� �� �� ����ũ");
+					record.addElement("눈알 네 개 쉐이크");
 					record.addElement(++count[0]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -152,7 +152,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("�������� ���纣�� ��ī��")) {
+						if(table.getValueAt(i, 1).equals("베리베리 블루베리 마카롱")) {
 							table.setValueAt(count[1]+=1, i, 2);
 							table.setValueAt(price*count[1], i, 3);
 						}
@@ -160,7 +160,7 @@ class Pos extends JFrame{
 					if(count[1]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("�������� ���纣�� ��ī��");
+						record.addElement("베리베리 블루베리 마카롱");
 						record.addElement(++count[1]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -168,7 +168,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("�������� ���纣�� ��ī��");
+					record.addElement("베리베리 블루베리 마카롱");
 					record.addElement(++count[1]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -192,7 +192,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("ġŰġŰ ���� ��ī��")) {
+						if(table.getValueAt(i, 1).equals("치키치키 초코 마카롱")) {
 							table.setValueAt(count[2]+=1, i, 2);
 							table.setValueAt(price*count[2], i, 3);
 						}
@@ -200,7 +200,7 @@ class Pos extends JFrame{
 					if(count[2]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("ġŰġŰ ���� ��ī��");
+						record.addElement("치키치키 초코 마카롱");
 						record.addElement(++count[2]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -208,7 +208,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("ġŰġŰ ���� ��ī��");
+					record.addElement("치키치키 초코 마카롱");
 					record.addElement(++count[2]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -232,7 +232,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("�ƺ��� ���� �ܰ��� ��")) {
+						if(table.getValueAt(i, 1).equals("아빠와 나는 외계인 라떼")) {
 							table.setValueAt(count[3]+=1, i, 2);
 							table.setValueAt(price*count[3], i, 3);
 						}
@@ -240,7 +240,7 @@ class Pos extends JFrame{
 					if(count[3]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("�ƺ��� ���� �ܰ��� ��");
+						record.addElement("아빠와 나는 외계인 라떼");
 						record.addElement(++count[3]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -248,7 +248,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("�ƺ��� ���� �ܰ��� ��");
+					record.addElement("아빠와 나는 외계인 라떼");
 					record.addElement(++count[3]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -272,7 +272,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("�߸��߸� �����༺�� ���̵�")) {
+						if(table.getValueAt(i, 1).equals("삐립삐립 지구행성맛 에이드")) {
 							table.setValueAt(count[4]+=1, i, 2);
 							table.setValueAt(price*count[4], i, 3);
 						}
@@ -280,7 +280,7 @@ class Pos extends JFrame{
 					if(count[4]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("�߸��߸� �����༺�� ���̵�");
+						record.addElement("삐립삐립 지구행성맛 에이드");
 						record.addElement(++count[4]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -288,7 +288,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("�߸��߸� �����༺�� ���̵�");
+					record.addElement("삐립삐립 지구행성맛 에이드");
 					record.addElement(++count[4]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -312,7 +312,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("���� ��Ʈ�κ��� ����ũ")) {
+						if(table.getValueAt(i, 1).equals("슈스 스트로베리 쉐이크")) {
 							table.setValueAt(count[5]+=1, i, 2);
 							table.setValueAt(price*count[5], i, 3);
 						}
@@ -320,7 +320,7 @@ class Pos extends JFrame{
 					if(count[5]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("���� ��Ʈ�κ��� ����ũ");
+						record.addElement("슈스 스트로베리 쉐이크");
 						record.addElement(++count[5]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -328,7 +328,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("���� ��Ʈ�κ��� ����ũ");
+					record.addElement("슈스 스트로베리 쉐이크");
 					record.addElement(++count[5]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -352,7 +352,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("��� ���̳��� �Ƹ޸�ī��")) {
+						if(table.getValueAt(i, 1).equals("룩앳 마이노즈 아메리카노")) {
 							table.setValueAt(count[6]+=1, i, 2);
 							table.setValueAt(price*count[6], i, 3);
 						}
@@ -360,7 +360,7 @@ class Pos extends JFrame{
 					if(count[6]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("��� ���̳��� �Ƹ޸�ī��");
+						record.addElement("룩앳 마이노즈 아메리카노");
 						record.addElement(++count[6]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -368,7 +368,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("��� ���̳��� �Ƹ޸�ī��");
+					record.addElement("룩앳 마이노즈 아메리카노");
 					record.addElement(++count[6]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -392,7 +392,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("�Ž� �ּ� �������� ��Ű")) {
+						if(table.getValueAt(i, 1).equals("매쉬 핫솟 포테이토 쿠키")) {
 							table.setValueAt(count[7]+=1, i, 2);
 							table.setValueAt(price*count[7], i, 3);
 						}
@@ -400,7 +400,7 @@ class Pos extends JFrame{
 					if(count[7]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("�Ž� �ּ� �������� ��Ű");
+						record.addElement("매쉬 핫솟 포테이토 쿠키");
 						record.addElement(++count[7]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -408,7 +408,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("�Ž� �ּ� �������� ��Ű");
+					record.addElement("매쉬 핫솟 포테이토 쿠키");
 					record.addElement(++count[7]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -432,7 +432,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("���ܾ��� ����ϱ�� ��Ű")) {
+						if(table.getValueAt(i, 1).equals("씨쁠씨쁠 사람일까요 쿠키")) {
 							table.setValueAt(count[8]+=1, i, 2);
 							table.setValueAt(price*count[8], i, 3);
 						}
@@ -440,7 +440,7 @@ class Pos extends JFrame{
 					if(count[8]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("���ܾ��� ����ϱ�� ��Ű");
+						record.addElement("씨쁠씨쁠 사람일까요 쿠키");
 						record.addElement(++count[8]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -448,7 +448,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("���ܾ��� ����ϱ�� ��Ű");
+					record.addElement("씨쁠씨쁠 사람일까요 쿠키");
 					record.addElement(++count[8]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -474,7 +474,7 @@ class Pos extends JFrame{
 					try {	
 						Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
 						m1.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");        
-						System.out.println("DB ���� �Ϸ�");			
+						System.out.println("DB 연결 완료");			
 					}catch(SQLException ex) {
 				        System.out.println("SQLException:" + ex);
 				    }catch(Exception ex) {
@@ -543,14 +543,14 @@ class Pos extends JFrame{
 				try {	
 					Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
 					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");     
-					System.out.println("DB ���� �Ϸ�");			
+					System.out.println("DB 연결 완료");			
 				}catch(Exception ex) {
 			        System.out.println("Exception:" + ex);
 			    }
 				
 				try {
 					int num[]= {10,10,10,10,10,10,10,10,10};
-					int cnt=0; //���ؼ� ������ 1���ϱ�
+					int cnt=0; //비교해서 맞으면 1더하기
 					String sql = "select * from inventory";
 					pstmt = (PreparedStatement) conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
@@ -562,7 +562,7 @@ class Pos extends JFrame{
 //							System.out.println(String.valueOf(num[i-1]));
 							if(num[i-1]<0) {
 								JOptionPane.showMessageDialog(null, 
-										btn_Title[i-1], "����� �����ϴ�.", 
+										btn_Title[i-1], "재고가 없습니다.", 
 										JOptionPane.ERROR_MESSAGE);
 								cnt=0;
 								continue;
@@ -582,13 +582,12 @@ class Pos extends JFrame{
 						System.out.println((table.getValueAt(i, 1)));
 						System.out.println((table.getValueAt(i, 2)));
 						
-						//������ �ٲ� �ǰ� �ؾ���..
+						//순서가 바뀌어도 되게 해야함..
 						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)) ) {
 							cnt++;
 							System.out.println(i);
 							System.out.println("ok1");
-						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))
-							 ) {
+						}else if((table.getValueAt(i, 1).equals(order_menu2)&&table.getValueAt(i, 2).equals(order_menu_cnt2))) {
 							cnt++;
 							System.out.println(i);
 							System.out.println("ok2");
@@ -614,10 +613,10 @@ class Pos extends JFrame{
 							dispose();
 						}
 					}
-					//�ֹ��� �´��� �ƴ��� �Ǵ� 
-					//���̺� getrowcount()�ϸ鼭 �޴��� ������ �� �޴´�
-					//�ֹ��� �޴��� ������ ���Ѵ�. //�� ������ �ֹ��� �޴��� ���� ������ �������� ������ �� ����... �ƴϸ� ���콺����Ϳ� �ִ°� Ŭ������ �������...
-					//������ ���� �ö󰡰� �� �ٽ� ���� �����Ѵ�.
+					//주문이 맞는지 아닌지 판단 
+					//테이블 getrowcount()하면서 메뉴랑 개수를 다 받는다
+					//주문한 메뉴와 개수를 비교한다. //내 생각엔 주문한 메뉴와 개수 변수를 전역으로 놔야할 것 같음... 아니면 마우스어댑터에 있는걸 클래스로 만들던지...
+					//맞으면 점수 올라가고 또 다시 게임 진행한다.
 					
 				}catch(Exception ex){
 					System.out.println("SQLException:" + ex);
@@ -625,14 +624,14 @@ class Pos extends JFrame{
 			}
 		});
 		
-		colName.add("��ǰ ��ȣ"); //0
+		colName.add("상품 번호"); //0
 
-		colName.add("��ǰ��"); //1
+		colName.add("상품명"); //1
 		
-		colName.add("����"); //2
+		colName.add("수량"); //2
 
-		colName.add("�ݾ�"); //3
-
+		colName.add("금액"); //3
+		
 		// model = new MyTableModel();
 
 		dmodel = new DefaultTableModel(colName, 0) {

@@ -15,22 +15,20 @@ import javax.swing.JPanel;
 
 public class JPanelIntro extends JPanel{
 	private Image screenImage;
-	private Graphics screenGraphic; // ÀüÃ¼È­¸é¿¡ ´ëÇÑ µÎ ÀÎ½ºÅÏ½º
+	private Graphics screenGraphic; 	
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg");
 	
 	private frame win;
 
 	
-	// ½ÃÀÛ¹öÆ° ÀÌ¹ÌÁö
-	private ImageIcon Startbtn[] = { new ImageIcon("images/BeforeStart.png"), // ¤±[0] Æò»ó½Ã, ¤±[1] ¸¶¿ì½º ¿Ã·ÈÀ» ¶§, ¤±[2] ¸¶¿ì½º ´©¸¦ ¶§
+	// ë‚˜ê°€ê¸° ë²„íŠ¼ ì´ë¯¸ì§€
+	private ImageIcon Startbtn[] = { new ImageIcon("images/BeforeStart.png"), // ã…[0] í‰ìƒì‹œ, ã…[1] ë§ˆìš°ìŠ¤ ì˜¬ë ¸ì„ ë•Œ, ã…[2] ë§ˆìš°ìŠ¤ ëˆ„ë¥¼ ë•Œ
 			new ImageIcon("images/AfterStart.png"), new ImageIcon("images/OnStart.png") };
-	// Á¶ÀÛ¹æ¹ı ÀÌ¹ÌÁö
+	// ì‹œì‘ë²„íŠ¼ ì´ë¯¸ì§€
 		private ImageIcon HowToPlaybtn[] = { new ImageIcon("images/BeforeHowToPlay.png"),
 				new ImageIcon("images/AfterHowToPlay.png"), new ImageIcon("images/OnHowToPlay.png") };
 		
 	
-	//³ª°¡±â ½ÃÀÛ, Á¶ÀÛ¹æ¹ı ¹öÆ°
-	// ³ª°¡±â ¹öÆ° ÀÌ¹ÌÁö
 	public static ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
 	public static JButton Endbtn = new JButton(End[0]);
 	private JButton Lbtn = new JButton(Startbtn[0]);
@@ -40,39 +38,39 @@ public class JPanelIntro extends JPanel{
 	{
 		this.win=win;
 		setLayout(null);
-			// Á¾·á¹öÆ°
-			Endbtn.setRolloverIcon(End[1]);
-			Endbtn.setBounds(1250, 10, 100, 80);
-			Endbtn.setBorderPainted(false);
-			Endbtn.setFocusPainted(false);
-			Endbtn.setContentAreaFilled(false);
-				add(Endbtn);
-				Endbtn.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mousePressed(MouseEvent e) {
-							System.exit(0);
-					}
-			});
-				
-			// ½ÃÀÛ¹öÆ°
-			Lbtn.setPressedIcon(Startbtn[1]);
-			Lbtn.setRolloverIcon(Startbtn[2]);
-			Lbtn.setBounds(350, 620, 220, 100);
-			Lbtn.setBorderPainted(false);
-			Lbtn.setFocusPainted(false);
-			Lbtn.setContentAreaFilled(false);
-			add(Lbtn);
-//				Lbtn.addMouseListener(new ConfigMouseAdapter());
-			Lbtn.addActionListener(new ActionListener() {
-				
+		// ì¢…ë£Œë²„íŠ¼
+		Endbtn.setRolloverIcon(End[1]);
+		Endbtn.setBounds(1250, 10, 100, 80);
+		Endbtn.setBorderPainted(false);
+		Endbtn.setFocusPainted(false);
+		Endbtn.setContentAreaFilled(false);
+			add(Endbtn);
+			Endbtn.addMouseListener(new MouseAdapter() {
 				@Override
-				public void actionPerformed(ActionEvent e) {
-					win.change("story");
-					
+				public void mousePressed(MouseEvent e) {
+						System.exit(0);
 				}
-			});
+		});
+				
+		// ì‹œì‘ë²„íŠ¼
+		Lbtn.setPressedIcon(Startbtn[1]);
+		Lbtn.setRolloverIcon(Startbtn[2]);
+		Lbtn.setBounds(350, 620, 220, 100);
+		Lbtn.setBorderPainted(false);
+		Lbtn.setFocusPainted(false);
+		Lbtn.setContentAreaFilled(false);
+		add(Lbtn);
+//				Lbtn.addMouseListener(new ConfigMouseAdapter());
+		Lbtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				win.change("story");
+				
+			}
+		});
 
-			// Á¶ÀÛ¹æ¹ı ¹öÆ°
+			// ì¡°ì‘ë°©ë²• ë²„íŠ¼
 			Rbtn.setPressedIcon(HowToPlaybtn[1]);
 			Rbtn.setRolloverIcon(HowToPlaybtn[2]);
 			Rbtn.setBounds(810, 620, 220, 100);
@@ -90,16 +88,16 @@ public class JPanelIntro extends JPanel{
 			});
 	} 
 	
-	public void paint(Graphics g) { // GUIÈ­¸é Áß Á¦ÀÏ Ã¹¹øÂ° È­¸éÀ» ±×·ÁÁÖ´Â ÇÔ¼ö
-		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImage¿¡ 1200X700ÀÇ ÀÌ¹ÌÁö¸¦ ³Ö¾îÁÜ
-		screenGraphic = screenImage.getGraphics(); // °Ù±×·¡ÇÈÀ» ÀÌ¿ëÇØ¼­ ½ºÅ©¸°±×·¡ÇÈÀ» ¾ò¾î¿È
-		screenDraw(screenGraphic); // screenDraw È£Ãâ
-		g.drawImage(screenImage, 0, 0, null); // screenImageÀÇ ÀÌ¹ÌÁö¸¦ (0,0)À§Ä¡¿¡ ±×·ÁÁÜ.
+	public void paint(Graphics g) { // GUIí™”ë©´ ì¤‘ ì œì¼ ì²«ë²ˆì§¸ í™”ë©´ì„ ê·¸ë ¤ì£¼ëŠ” í•¨ìˆ˜
+		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImageì— 1200X700ì˜ ì´ë¯¸ì§€ë¥¼ ë„£ì–´ì¤Œ
+		screenGraphic = screenImage.getGraphics(); // ê²Ÿê·¸ë˜í”½ì„ ì´ìš©í•´ì„œ ìŠ¤í¬ë¦°ê·¸ë˜í”½ì„ ì–»ì–´ì˜´
+		screenDraw(screenGraphic); // screenDraw í˜¸ì¶œ
+		g.drawImage(screenImage, 0, 0, null); // screenImageì˜ ì´ë¯¸ì§€ë¥¼ (0,0)ìœ„ì¹˜ì— ê·¸ë ¤ì¤Œ.
 	}
-
+	
 	public void screenDraw(Graphics g) {
-		g.drawImage(Background, 0, 0, null); // BackgroundÀÇ ÀÌ¹ÌÁö¸¦ (0,0)À§Ä¡¿¡ ±×·ÁÁÜ.
-		paintComponents(g); // ÄÄÆ÷³ÍÆ® »ğÀÔ
-		this.repaint(); // ÀüÃ¼È­¸é ÀÌ¹ÌÁö¸¦ ¸Å ¼ø°£¸¶´Ù ±×·ÁÁÜ, ÇÁ·Î±×·¥ ½ÃÀÛ~Á¾·á±îÁö ¹İº¹µÇ¸ç È­¸é¿¡ ±×·ÁÁÜ.
+		g.drawImage(Background, 0, 0, null); // Backgroundì˜ ì´ë¯¸ì§€ë¥¼ (0,0)ìœ„ì¹˜ì— ê·¸ë ¤ì¤Œ.
+		paintComponents(g); // ì»´í¬ë„ŒíŠ¸ ì‚½ì…
+		this.repaint(); // ì „ì²´í™”ë©´ ì´ë¯¸ì§€ë¥¼ ë§¤ ìˆœê°„ë§ˆë‹¤ ê·¸ë ¤ì¤Œ, í”„ë¡œê·¸ë¨ ì‹œì‘~ì¢…ë£Œê¹Œì§€ ë°˜ë³µë˜ë©° í™”ë©´ì— ê·¸ë ¤ì¤Œ.
 	}
 }
