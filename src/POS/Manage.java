@@ -46,10 +46,13 @@ class Manage extends JFrame{
 	final int[] menu_price= {4000,2500,2500,5500,5000,4000,3000,3500,3500};
 	
 
+	JButton[] btn = new JButton[9];
+	JButton order_btn = new JButton("주문");
+	JButton cancel_btn = new JButton("취소");
 	JPanel panel = new JPanel();
-	JLabel label1 = new JLabel("주문");
-	JLabel label2 = new JLabel("취소");
-	JLabel label3 = new JLabel("을 주문하시겠습니까?");
+	JLabel label1 = new JLabel("을 주문하시겠습니까?");
+	JLabel label2 = new JLabel("?");
+	JLabel label3 = new JLabel("주문 수량 입력 : ");
 	JTextField tf = new JTextField();
 	DefaultTableModel dmodel;
 	JTable table;

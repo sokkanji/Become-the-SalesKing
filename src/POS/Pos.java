@@ -60,7 +60,7 @@ class Pos extends JFrame{
 	
 	private JButton payment_btn = new JButton(payment[0]);
 	
-	private JLabel total_label = new JLabel("���� : ");
+	private JLabel total_label = new JLabel("총합: ");
 	private JLabel total_price = new JLabel("0");
 	
 	final String[] btn_Title= {"눈알 네 개 쉐이크","베리베리 블루베리 마카롱","치키치키 초코 마카롱",
@@ -607,7 +607,7 @@ class Pos extends JFrame{
 						if(sum<0) {
 							System.out.println("bbbb");
 							dispose();
-							win.change("ending");//���ӽ���.. ������ ���� ��� ������
+							win.change("ending");
 						}else {
 							win.change("story");
 							dispose();
