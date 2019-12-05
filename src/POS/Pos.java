@@ -1,5 +1,6 @@
 package POS;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -70,7 +71,8 @@ class Pos extends JFrame{
 	// MyTableModel model;
 	Manage m1;
 	private frame win;
-	Pos pos;
+	private Pos pos;
+	JLabel timerLabel = new JLabel();
 
 	DefaultTableModel dmodel;
 	JTable table;
@@ -623,6 +625,13 @@ class Pos extends JFrame{
 				}
 			}
 		});
+			
+			timerLabel.setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 50));
+			add(timerLabel);
+			timerLabel.setBounds(1195,650, 100, 100);
+	
+			TimerThread th = new TimerThread(timerLabel,win,this);
+			th.start();
 		
 		colName.add("상품 번호"); //0
 

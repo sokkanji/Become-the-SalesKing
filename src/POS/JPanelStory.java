@@ -99,7 +99,7 @@ public class JPanelStory extends JPanel{
 				if(story_num==0) {
 						if(add==story1_text.length) {
 							add=0;
-							++story_num;
+							story_num++;
 							Background = Toolkit.getDefaultToolkit().createImage("images/#2.jpg"); 
 						}else {
 							story1.setText(story1_text[add]);

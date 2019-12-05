@@ -56,9 +56,8 @@ public class JPanelOrder extends JPanel{
 		JLabel order_txt2[]=new JLabel[10];
 		//메뉴이름
 		String Menu_txt[]= {"눈알 네 개 쉐이크","베리베리 블루베리 마카롱","치키치키 초코 마카롱",
-							"아빠와 나는 외계인 라떼","삐립삐립 지구행성맛 에이드","슈스 스트로베리 쉐이크",
-							"룩앳 마이노즈 아메리카노","매쉬 핫솟 포테이토 쿠키","씨쁠씨쁠 사람일까요 쿠키"};
-		JLabel timerLabel = new JLabel();
+					"아빠와 나는 외계인 라떼","삐립삐립 지구행성맛 에이드","슈스 스트로베리 쉐이크",
+					"룩앳 마이노즈 아메리카노","매쉬 핫솟 포테이토 쿠키","씨쁠씨쁠 사람일까요 쿠키"};
 		JLabel monsterLa[]=new JLabel[5];
 		
 		JLabel order_end = new JLabel("개 주세요.");
@@ -118,13 +117,13 @@ public class JPanelOrder extends JPanel{
 		add(order_end2);
 		add(priceLabel);
 
-		//Ÿ�̸�
-		timerLabel.setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 50));
-		add(timerLabel);
-		timerLabel.setBounds(1195, 86, 100, 100);
-
-		TimerThread th = new TimerThread(timerLabel,win);
-		th.start();
+		
+//		timerLabel.setFont(new Font("배달의민족 도현", Font.CENTER_BASELINE, 50));
+//		add(timerLabel);
+//		timerLabel.setBounds(1195, 86, 100, 100);
+//
+//		TimerThread th = new TimerThread(timerLabel,win);
+//		th.start();
 		
 		add(date);
 		date.setFont(new Font("Gothic", Font.ITALIC, 35));
