@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 public class JPanelHowTo extends JPanel{
 	private Image screenImage;
-	private Graphics screenGraphic; // ÀüÃ¼È­¸é¿¡ ´ëÇÑ µÎ ÀÎ½ºÅÏ½º
+	private Graphics screenGraphic; // ï¿½ï¿½Ã¼È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/howto.jpg");
 	
 	private ImageIcon Backbtn[] = { new ImageIcon("images/BeforeBack.png"), new ImageIcon("images/AfterBack.png"),
@@ -21,8 +21,7 @@ public class JPanelHowTo extends JPanel{
 
 	public JPanelHowTo(frame win) {
 		setLayout(null);
-		// TODO Auto-generated constructor stub
-		Bbtn.setBounds(1050, 610, 180, 110);
+		Bbtn.setBounds(1050, 630, 180, 110);
 		Bbtn.setBorderPainted(false);
 		Bbtn.setFocusPainted(false);
 		Bbtn.setContentAreaFilled(false);
@@ -33,22 +32,21 @@ public class JPanelHowTo extends JPanel{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
 				win.change("intro");
 			}
 		});
 	}
 	
-	public void paint(Graphics g) { // GUIÈ­¸é Áß Á¦ÀÏ Ã¹¹øÂ° È­¸éÀ» ±×·ÁÁÖ´Â ÇÔ¼ö
-		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImage¿¡ 1200X700ÀÇ ÀÌ¹ÌÁö¸¦ ³Ö¾îÁÜ
-		screenGraphic = screenImage.getGraphics(); // °Ù±×·¡ÇÈÀ» ÀÌ¿ëÇØ¼­ ½ºÅ©¸°±×·¡ÇÈÀ» ¾ò¾î¿È
-		screenDraw(screenGraphic); // screenDraw È£Ãâ
-		g.drawImage(screenImage, 0, 0, null); // screenImageÀÇ ÀÌ¹ÌÁö¸¦ (0,0)À§Ä¡¿¡ ±×·ÁÁÜ.
+	public void paint(Graphics g) { // GUIÈ­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° È­ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
+		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImageï¿½ï¿½ 1200X700ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
+		screenGraphic = screenImage.getGraphics(); // ï¿½Ù±×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		screenDraw(screenGraphic); // screenDraw È£ï¿½ï¿½
+		g.drawImage(screenImage, 0, 0, null); // screenImageï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ (0,0)ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½.
 	}
 
 	public void screenDraw(Graphics g) {
-		g.drawImage(Background, 0, 0, null); // BackgroundÀÇ ÀÌ¹ÌÁö¸¦ (0,0)À§Ä¡¿¡ ±×·ÁÁÜ.
-		paintComponents(g); // ÄÄÆ÷³ÍÆ® »ðÀÔ
-		this.repaint(); // ÀüÃ¼È­¸é ÀÌ¹ÌÁö¸¦ ¸Å ¼ø°£¸¶´Ù ±×·ÁÁÜ, ÇÁ·Î±×·¥ ½ÃÀÛ~Á¾·á±îÁö ¹Ýº¹µÇ¸ç È­¸é¿¡ ±×·ÁÁÜ.
+		g.drawImage(Background, 0, 0, null); // Backgroundï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ (0,0)ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½.
+		paintComponents(g); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+		this.repaint(); // ï¿½ï¿½Ã¼È­ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ç¸ï¿½ È­ï¿½é¿¡ ï¿½×·ï¿½ï¿½ï¿½.
 	}
 }

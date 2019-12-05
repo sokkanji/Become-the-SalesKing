@@ -60,12 +60,12 @@ class Pos extends JFrame{
 	
 	private JButton payment_btn = new JButton(payment[0]);
 	
-	private JLabel total_label = new JLabel("ÃÑÇÕ : ");
+	private JLabel total_label = new JLabel("ï¿½ï¿½ï¿½ï¿½ : ");
 	private JLabel total_price = new JLabel("0");
 	
-	final String[] btn_Title= {"´«¾Ë ³× °³ ½¦ÀÌÅ©","º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ","Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ",
-			"¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼","»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå","½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©",
-			"·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë","¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°","¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°"};
+	final String[] btn_Title= {"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©","ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½çº£ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½","Ä¡Å°Ä¡Å° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½",
+			"ï¿½Æºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½","ï¿½ß¸ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½à¼ºï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½","ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©",
+			"ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½Æ¸Þ¸ï¿½Ä«ï¿½ï¿½","ï¿½Å½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°","ï¿½ï¿½ï¿½Ü¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½Å°"};
 
 	// MyTableModel model;
 	Manage m1;
@@ -76,17 +76,17 @@ class Pos extends JFrame{
 	JTable table;
 	JScrollPane scroll;
 	Vector colName = new Vector();
-	int selRow; // ¼±ÅÃÇÑ ¼¿
+	int selRow; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 	String bar = "";
-	int no; //Å×ÀÌºí¿¡ µé¾î°¡´Â ¹øÈ£
+	int no; //ï¿½ï¿½ï¿½Ìºï¿½ï¿½ï¿½ ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½ï¿½È£
 	int count[]= {0,0,0,0,0,0,0,0,0};
-	int t_price=0;//ÃÑ °¡°Ý
+	int t_price=0;//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	Vector record;
 	Vector vec;
 
 	Pos(String order_menu,String order_menu2,int order_menu_cnt, int order_menu_cnt2, frame win){
-        // ÁÖÀÇ, ¿©±â¼­ setDefaultCloseOperation() Á¤ÀÇ¸¦ ÇÏÁö ¸»¾Æ¾ß ÇÑ´Ù
-        // Á¤ÀÇÇÏ°Ô µÇ¸é »õ Ã¢À» ´ÝÀ¸¸é ¸ðµç Ã¢°ú ÇÁ·Î±×·¥ÀÌ µ¿½Ã¿¡ ²¨Áø´Ù
+        // ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½â¼­ setDefaultCloseOperation() ï¿½ï¿½ï¿½Ç¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Æ¾ï¿½ ï¿½Ñ´ï¿½
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½Ç¸ï¿½ ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ Ã¢ï¿½ï¿½ ï¿½ï¿½ï¿½Î±×·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		this.win = win;
 		this.pos = this; 
 		setUndecorated(true);
@@ -112,7 +112,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("´«¾Ë ³× °³ ½¦ÀÌÅ©")) {
+						if(table.getValueAt(i, 1).equals("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©")) {
 							table.setValueAt(count[0]+=1, i, 2);
 							table.setValueAt(price*count[0], i, 3);
 						}
@@ -120,7 +120,7 @@ class Pos extends JFrame{
 					if(count[0]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("´«¾Ë ³× °³ ½¦ÀÌÅ©");
+						record.addElement("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©");
 						record.addElement(++count[0]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -128,7 +128,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("´«¾Ë ³× °³ ½¦ÀÌÅ©");
+					record.addElement("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©");
 					record.addElement(++count[0]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -152,7 +152,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ")) {
+						if(table.getValueAt(i, 1).equals("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½çº£ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½")) {
 							table.setValueAt(count[1]+=1, i, 2);
 							table.setValueAt(price*count[1], i, 3);
 						}
@@ -160,7 +160,7 @@ class Pos extends JFrame{
 					if(count[1]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ");
+						record.addElement("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½çº£ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½");
 						record.addElement(++count[1]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -168,7 +168,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ");
+					record.addElement("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½çº£ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½");
 					record.addElement(++count[1]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -192,7 +192,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ")) {
+						if(table.getValueAt(i, 1).equals("Ä¡Å°Ä¡Å° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½")) {
 							table.setValueAt(count[2]+=1, i, 2);
 							table.setValueAt(price*count[2], i, 3);
 						}
@@ -200,7 +200,7 @@ class Pos extends JFrame{
 					if(count[2]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ");
+						record.addElement("Ä¡Å°Ä¡Å° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½");
 						record.addElement(++count[2]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -208,7 +208,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ");
+					record.addElement("Ä¡Å°Ä¡Å° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½");
 					record.addElement(++count[2]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -232,7 +232,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼")) {
+						if(table.getValueAt(i, 1).equals("ï¿½Æºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½")) {
 							table.setValueAt(count[3]+=1, i, 2);
 							table.setValueAt(price*count[3], i, 3);
 						}
@@ -240,7 +240,7 @@ class Pos extends JFrame{
 					if(count[3]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼");
+						record.addElement("ï¿½Æºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½");
 						record.addElement(++count[3]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -248,7 +248,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼");
+					record.addElement("ï¿½Æºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½");
 					record.addElement(++count[3]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -272,7 +272,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå")) {
+						if(table.getValueAt(i, 1).equals("ï¿½ß¸ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½à¼ºï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½")) {
 							table.setValueAt(count[4]+=1, i, 2);
 							table.setValueAt(price*count[4], i, 3);
 						}
@@ -280,7 +280,7 @@ class Pos extends JFrame{
 					if(count[4]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå");
+						record.addElement("ï¿½ß¸ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½à¼ºï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½");
 						record.addElement(++count[4]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -288,7 +288,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå");
+					record.addElement("ï¿½ß¸ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½à¼ºï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½");
 					record.addElement(++count[4]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -312,7 +312,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©")) {
+						if(table.getValueAt(i, 1).equals("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©")) {
 							table.setValueAt(count[5]+=1, i, 2);
 							table.setValueAt(price*count[5], i, 3);
 						}
@@ -320,7 +320,7 @@ class Pos extends JFrame{
 					if(count[5]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©");
+						record.addElement("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©");
 						record.addElement(++count[5]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -328,7 +328,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("½´½º ½ºÆ®·Îº£¸® ½¦ÀÌÅ©");
+					record.addElement("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Îºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©");
 					record.addElement(++count[5]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -352,7 +352,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë")) {
+						if(table.getValueAt(i, 1).equals("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½Æ¸Þ¸ï¿½Ä«ï¿½ï¿½")) {
 							table.setValueAt(count[6]+=1, i, 2);
 							table.setValueAt(price*count[6], i, 3);
 						}
@@ -360,7 +360,7 @@ class Pos extends JFrame{
 					if(count[6]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë");
+						record.addElement("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½Æ¸Þ¸ï¿½Ä«ï¿½ï¿½");
 						record.addElement(++count[6]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -368,7 +368,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë");
+					record.addElement("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½Æ¸Þ¸ï¿½Ä«ï¿½ï¿½");
 					record.addElement(++count[6]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -392,7 +392,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°")) {
+						if(table.getValueAt(i, 1).equals("ï¿½Å½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°")) {
 							table.setValueAt(count[7]+=1, i, 2);
 							table.setValueAt(price*count[7], i, 3);
 						}
@@ -400,7 +400,7 @@ class Pos extends JFrame{
 					if(count[7]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°");
+						record.addElement("ï¿½Å½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°");
 						record.addElement(++count[7]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -408,7 +408,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°");
+					record.addElement("ï¿½Å½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°");
 					record.addElement(++count[7]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -432,7 +432,7 @@ class Pos extends JFrame{
 				total_price.setText(Integer.toString(t_price));
 				if(table.getRowCount()!=0) {
 					for(int i=0;i<table.getRowCount();i++) {
-						if(table.getValueAt(i, 1).equals("¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°")) {
+						if(table.getValueAt(i, 1).equals("ï¿½ï¿½ï¿½Ü¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½Å°")) {
 							table.setValueAt(count[8]+=1, i, 2);
 							table.setValueAt(price*count[8], i, 3);
 						}
@@ -440,7 +440,7 @@ class Pos extends JFrame{
 					if(count[8]==0) {
 						record = new Vector();
 						record.addElement(no);
-						record.addElement("¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°");
+						record.addElement("ï¿½ï¿½ï¿½Ü¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½Å°");
 						record.addElement(++count[8]);
 						record.addElement(price);
 						dmodel.addRow(record);
@@ -448,7 +448,7 @@ class Pos extends JFrame{
 				}else {
 					record = new Vector();
 					record.addElement(no);
-					record.addElement("¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°");
+					record.addElement("ï¿½ï¿½ï¿½Ü¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½Å°");
 					record.addElement(++count[8]);
 					record.addElement(price);
 					dmodel.addRow(record);
@@ -474,7 +474,7 @@ class Pos extends JFrame{
 					try {	
 						Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
 						m1.conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");        
-						System.out.println("DB ¿¬°á ¿Ï·á");			
+						System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");			
 					}catch(SQLException ex) {
 				        System.out.println("SQLException:" + ex);
 				    }catch(Exception ex) {
@@ -543,14 +543,14 @@ class Pos extends JFrame{
 				try {	
 					Class.forName("org.gjt.mm.mysql.Driver").newInstance();	
 					conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/become_selling_king", "root", "mirim2");     
-					System.out.println("DB ¿¬°á ¿Ï·á");			
+					System.out.println("DB ï¿½ï¿½ï¿½ï¿½ ï¿½Ï·ï¿½");			
 				}catch(Exception ex) {
 			        System.out.println("Exception:" + ex);
 			    }
 				
 				try {
 					int num[]= {10,10,10,10,10,10,10,10,10};
-					int cnt=0; //ºñ±³ÇØ¼­ ¸ÂÀ¸¸é 1´õÇÏ±â
+					int cnt=0; //ï¿½ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 1ï¿½ï¿½ï¿½Ï±ï¿½
 					String sql = "select * from inventory";
 					pstmt = (PreparedStatement) conn.prepareStatement(sql);
 					ResultSet rs = pstmt.executeQuery();
@@ -562,7 +562,7 @@ class Pos extends JFrame{
 //							System.out.println(String.valueOf(num[i-1]));
 							if(num[i-1]<0) {
 								JOptionPane.showMessageDialog(null, 
-										btn_Title[i-1], "Àç°í°¡ ¾ø½À´Ï´Ù.", 
+										btn_Title[i-1], "ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.", 
 										JOptionPane.ERROR_MESSAGE);
 								cnt=0;
 								continue;
@@ -582,7 +582,7 @@ class Pos extends JFrame{
 						System.out.println((table.getValueAt(i, 1)));
 						System.out.println((table.getValueAt(i, 2)));
 						
-						//¼ø¼­°¡ ¹Ù²î¾îµµ µÇ°Ô ÇØ¾ßÇÔ..
+						//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ù²ï¿½îµµ ï¿½Ç°ï¿½ ï¿½Ø¾ï¿½ï¿½ï¿½..
 						if((table.getValueAt(i, 1).equals(order_menu)&&table.getValueAt(i, 2).equals(order_menu_cnt)) ) {
 							cnt++;
 							System.out.println(i);
@@ -608,16 +608,16 @@ class Pos extends JFrame{
 						if(sum<0) {
 							System.out.println("bbbb");
 							dispose();
-							win.change("ending");//°ÔÀÓ½ÇÆÐ.. ¸¶Áö¸· °ÔÀÓ °á°ú ÆäÀÌÁö
+							win.change("ending");//ï¿½ï¿½ï¿½Ó½ï¿½ï¿½ï¿½.. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 						}else {
 							win.change("story");
 							dispose();
 						}
 					}
-					//ÁÖ¹®ÀÌ ¸Â´ÂÁö ¾Æ´ÑÁö ÆÇ´Ü 
-					//Å×ÀÌºí getrowcount()ÇÏ¸é¼­ ¸Þ´º¶û °³¼ö¸¦ ´Ù ¹Þ´Â´Ù
-					//ÁÖ¹®ÇÑ ¸Þ´º¿Í °³¼ö¸¦ ºñ±³ÇÑ´Ù. //³» »ý°¢¿£ ÁÖ¹®ÇÑ ¸Þ´º¿Í °³¼ö º¯¼ö¸¦ Àü¿ªÀ¸·Î ³ö¾ßÇÒ °Í °°À½... ¾Æ´Ï¸é ¸¶¿ì½º¾î´ðÅÍ¿¡ ÀÖ´Â°É Å¬·¡½º·Î ¸¸µé´øÁö...
-					//¸ÂÀ¸¸é Á¡¼ö ¿Ã¶ó°¡°í ¶Ç ´Ù½Ã °ÔÀÓ ÁøÇàÇÑ´Ù.
+					//ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Â´ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ 
+					//ï¿½ï¿½ï¿½Ìºï¿½ getrowcount()ï¿½Ï¸é¼­ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ´Â´ï¿½
+					//ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ñ´ï¿½. //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½... ï¿½Æ´Ï¸ï¿½ ï¿½ï¿½ï¿½ì½ºï¿½ï¿½ï¿½ï¿½Í¿ï¿½ ï¿½Ö´Â°ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...
+					//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ã¶ó°¡°ï¿½ ï¿½ï¿½ ï¿½Ù½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½.
 					
 				}catch(Exception ex){
 					System.out.println("SQLException:" + ex);
@@ -625,13 +625,13 @@ class Pos extends JFrame{
 			}
 		});
 		
-		colName.add("»óÇ° ¹øÈ£"); //0
+		colName.add("ï¿½ï¿½Ç° ï¿½ï¿½È£"); //0
 
-		colName.add("»óÇ°¸í"); //1
+		colName.add("ï¿½ï¿½Ç°ï¿½ï¿½"); //1
 		
-		colName.add("¼ö·®"); //2
+		colName.add("ï¿½ï¿½ï¿½ï¿½"); //2
 
-		colName.add("±Ý¾×"); //3
+		colName.add("ï¿½Ý¾ï¿½"); //3
 
 		// model = new MyTableModel();
 

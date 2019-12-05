@@ -19,9 +19,8 @@ public class JPanelIntro extends JPanel{
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Introbackground.jpg");
 	
 	private frame win;
+
 	
-	// 나가기 버튼 이미지
-	private ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
 	// 시작버튼 이미지
 	private ImageIcon Startbtn[] = { new ImageIcon("images/BeforeStart.png"), // ㅁ[0] 평상시, ㅁ[1] 마우스 올렸을 때, ㅁ[2] 마우스 누를 때
 			new ImageIcon("images/AfterStart.png"), new ImageIcon("images/OnStart.png") };
@@ -30,8 +29,10 @@ public class JPanelIntro extends JPanel{
 				new ImageIcon("images/AfterHowToPlay.png"), new ImageIcon("images/OnHowToPlay.png") };
 		
 	
-	// 나가기, 시작, 조작방법 버튼
-	private JButton Endbtn = new JButton(End[0]);
+	//나가기 시작, 조작방법 버튼
+	// 나가기 버튼 이미지
+	public static ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
+	public static JButton Endbtn = new JButton(End[0]);
 	private JButton Lbtn = new JButton(Startbtn[0]);
 	private JButton Rbtn = new JButton(HowToPlaybtn[0]);
 		
@@ -39,21 +40,20 @@ public class JPanelIntro extends JPanel{
 	{
 		this.win=win;
 		setLayout(null);
-		
-		// 종료버튼
+			// 종료버튼
 			Endbtn.setRolloverIcon(End[1]);
 			Endbtn.setBounds(1250, 10, 100, 80);
 			Endbtn.setBorderPainted(false);
 			Endbtn.setFocusPainted(false);
 			Endbtn.setContentAreaFilled(false);
-			add(Endbtn);
-			Endbtn.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mousePressed(MouseEvent e) {
-					System.exit(0);
-				}
+				add(Endbtn);
+				Endbtn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mousePressed(MouseEvent e) {
+							System.exit(0);
+					}
 			});
-
+				
 			// 시작버튼
 			Lbtn.setPressedIcon(Startbtn[1]);
 			Lbtn.setRolloverIcon(Startbtn[2]);

@@ -4,7 +4,7 @@ import java.awt.Color;
 
 import javax.swing.JFrame;
 
-public class frame extends JFrame{
+public class frame2 extends JFrame{
 	public JPanelIntro intro = null;
 	public JPanelStory story = null;
 	public JPanelOrder order = null;
@@ -13,21 +13,21 @@ public class frame extends JFrame{
 	static int ordernum=0;
 	int money;
 	
-	frame(int money){
+	frame2(int money){
 		this.money = money;
 		Music introMusic = new Music("introMusic.MP3", true);
 		introMusic.start();
 		
-		setUndecorated(true); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½âº»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½Þ´ï¿½ï¿½Ù°ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.
+		setUndecorated(true); // ½ÇÇàÇßÀ» ¶§ ±âº»ÀûÀ¸·Î º¸ÀÌ´Â ¸Þ´º¹Ù°¡ ¾È º¸ÀÓ.
 		setBackground(new Color(0, 0, 0, 0));
 	}
 	
 	public void change(String panelName) {
 		if(panelName.equals("story")) {
 			if(ordernum==4) {
-				//ordernum=0;
+				ordernum=0;
 				getContentPane().removeAll();
-				getContentPane().add(ending); //ï¿½×³ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø³ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
+				getContentPane().add(ending); //±×³É ÀÓ½Ã·Î ¸Ç Ã³À½À¸·Î ÇØ³õÀ½. ¿ø·¡ ¸¶Áö¸· ÆäÀÌÁö¿©¾ß ÇÔ.
 				revalidate();
 				repaint();
 			}else {
@@ -40,7 +40,7 @@ public class frame extends JFrame{
 		}
 //		if(panelName.equals("story2")) {
 //			getContentPane().removeAll();
-//			getContentPane().add(new JPanelStory(this)); //ï¿½×³ï¿½ ï¿½Ó½Ã·ï¿½ ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø³ï¿½ï¿½ï¿½. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½.
+//			getContentPane().add(new JPanelStory(this)); //±×³É ÀÓ½Ã·Î ¸Ç Ã³À½À¸·Î ÇØ³õÀ½. ¿ø·¡ ¸¶Áö¸· ÆäÀÌÁö¿©¾ß ÇÔ.
 //			revalidate();
 //			repaint();
 //		}

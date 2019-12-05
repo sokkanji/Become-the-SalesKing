@@ -1,9 +1,0 @@
-diff a/src/POS/Intro.java b/src/POS/Intro.java	(rejected hunks)
-@@ -172,7 +172,6 @@
- 			Name.setFont(new Font("����ǹ��� �־�", Font.BOLD, 45));
- 			Name.setOpaque(false);
- 
--			String name = Name.getText();
- 			String name = Name.getText(); 
- 
- //			story[i].setBounds(100, 450, 800, 400);

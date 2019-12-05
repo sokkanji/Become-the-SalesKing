@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 public class JPanelOrder extends JPanel{
 	private frame win;
 	private Image screenImage;
-	private Graphics screenGraphic; // ÀüÃ¼È­¸é¿¡ ´ëÇÑ µÎ ÀÎ½ºÅÏ½º
+	private Graphics screenGraphic; // ï¿½ï¿½Ã¼È­ï¿½é¿¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½
 	private Image Background = Toolkit.getDefaultToolkit().createImage("images/Menubackground.jpg");
 	private Pos p;
 	
@@ -30,25 +30,43 @@ public class JPanelOrder extends JPanel{
 	
 	int o_rand, o_rand2, m_rand, m_rand2;
 	
-	
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ° ï¿½Ì¹ï¿½ï¿½ï¿½
+		public static ImageIcon End[] = { new ImageIcon("images/End.png"), new ImageIcon("images/OnEnd.png") };
+		public static JButton Endbtn = new JButton(End[0]);
+
+
 	JPanelOrder(frame win, int ordernum)
 	{	
 		this.win=win;
 		setLayout(null);
 	
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Æ°
+				Endbtn.setRolloverIcon(End[1]);
+				Endbtn.setBounds(1250, 10, 100, 80);
+				Endbtn.setBorderPainted(false);
+				Endbtn.setFocusPainted(false);
+				Endbtn.setContentAreaFilled(false);
+				add(Endbtn);
+				Endbtn.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mousePressed(MouseEvent e) {
+							System.exit(0);
+					}
+				});			
+				
 		JLabel date = new JLabel(String.valueOf(ordernum));
 		//JLabel money=new JLabel();
-		//ÁÖ¹® ¸Þ´º ÀÌ¸§ ºÙÀÏ ¶óº§
+		//ï¿½Ö¹ï¿½ ï¿½Þ´ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 		JLabel order_txt[]=new JLabel[10];
 		JLabel order_txt2[]=new JLabel[10];
-		//¸Þ´ºÀÌ¸§
-		String Menu_txt[]= {"´«¾Ë ³× °³ ½¦ÀÌÅ©", "Ä¡Å°Ä¡Å° ÃÊÄÚ ¸¶Ä«·Õ", "½´½º ½ºÅä¸® º£¸® ½¦ÀÌÅ©", "º£¸®º£¸® ºí·çº£¸® ¸¶Ä«·Õ", "¾Æºü¿Í ³ª´Â ¿Ü°èÀÎ ¶ó¶¼",
-				"»ß¸³»ß¸³ Áö±¸Çà¼º¸À ¿¡ÀÌµå", "½´½º ½ºÅä¸®º£¸® ½¦ÀÌÅ©", "·è¾Ü ¸¶ÀÌ³ëÁî ¾Æ¸Þ¸®Ä«³ë", "¸Å½¬ ÇÖ¼Ú Æ÷Å×ÀÌÅä ÄíÅ°", "¾¾»Ü¾¾»Ü »ç¶÷ÀÏ±î¿ä ÄíÅ°"};
+		//ï¿½Þ´ï¿½ï¿½Ì¸ï¿½
+		String Menu_txt[]= {"ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©", "Ä¡Å°Ä¡Å° ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©", "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½çº£ï¿½ï¿½ ï¿½ï¿½Ä«ï¿½ï¿½", "ï¿½Æºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½ï¿½ï¿½ ï¿½ï¿½",
+				"ï¿½ß¸ï¿½ï¿½ß¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½à¼ºï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½", "ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Å©", "ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ ï¿½Æ¸Þ¸ï¿½Ä«ï¿½ï¿½", "ï¿½Å½ï¿½ ï¿½Ö¼ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Å°", "ï¿½ï¿½ï¿½Ü¾ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï±ï¿½ï¿½ ï¿½ï¿½Å°"};
 		JLabel timerLabel = new JLabel();
 		JLabel monsterLa[]=new JLabel[5];
 		
-		JLabel order_end = new JLabel("°³ ÁÖ¼¼¿ä.");
-		JLabel order_end2 = new JLabel("°³¶û");
+		JLabel order_end = new JLabel("ï¿½ï¿½ ï¿½Ö¼ï¿½ï¿½ï¿½.");
+		JLabel order_end2 = new JLabel("ï¿½ï¿½ï¿½ï¿½");
 		
 		JLabel priceLabel = new JLabel(String.valueOf(win.money));
 		
@@ -58,9 +76,9 @@ public class JPanelOrder extends JPanel{
 		m_rand = 0;
 		m_rand2 = 0;
 		
-		//ÁÖ¹®
+		//ï¿½Ö¹ï¿½
 		for(i=0; i<Menu_txt.length; i++) {
-			order_txt[i]=new JLabel(Menu_txt[i]); //¶óº§¿¡ ÁÖ¹® ¸Þ´º ÀÌ¸§ ºÎÂø
+			order_txt[i]=new JLabel(Menu_txt[i]); //ï¿½óº§¿ï¿½ ï¿½Ö¹ï¿½ ï¿½Þ´ï¿½ ï¿½Ì¸ï¿½ ï¿½ï¿½ï¿½ï¿½
 			order_txt2[i]=new JLabel(Menu_txt[i]);
 		}
 		
@@ -72,29 +90,29 @@ public class JPanelOrder extends JPanel{
 		m_rand2 =  (int)(Math.random()*5+1);
 		
 		order_txt[o_rand].setBounds(500, 10, 400, 160);
-		order_txt[o_rand].setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 25));
+		order_txt[o_rand].setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 25));
 		
 		order_txt2[o_rand2].setBounds(500, 45, 400, 160);
-		order_txt2[o_rand2].setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 25));
+		order_txt2[o_rand2].setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 25));
 
 
 		String num = Integer.toString(m_rand);
 		JLabel menu_num = new JLabel(num);
 		menu_num.setBounds(820, 10, 400, 160);
-		menu_num.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 30));
+		menu_num.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 30));
 		
 		String num2 = Integer.toString(m_rand2);
 		JLabel menu_num2 = new JLabel(num2);
 		menu_num2.setBounds(820, 45, 400, 160);
-		menu_num2.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 30));
+		menu_num2.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 30));
 
 		order_end.setBounds(840, 45, 400, 160);
-		order_end.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 25));
+		order_end.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 25));
 		order_end2.setBounds(840, 10, 400, 160);
-		order_end2.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 25));
+		order_end2.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 25));
 		
 		priceLabel.setBounds(265,15,400,160);
-		priceLabel.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 25)); 
+		priceLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 25)); 
 		
 		add(order_txt[o_rand]);
 		add(order_txt2[o_rand2]);
@@ -104,8 +122,8 @@ public class JPanelOrder extends JPanel{
 		add(order_end2);
 		add(priceLabel);
 
-		//Å¸ÀÌ¸Ó
-		timerLabel.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.CENTER_BASELINE, 50));
+		//Å¸ï¿½Ì¸ï¿½
+		timerLabel.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.CENTER_BASELINE, 50));
 		add(timerLabel);
 		timerLabel.setBounds(1195, 86, 100, 100);
 
@@ -116,7 +134,7 @@ public class JPanelOrder extends JPanel{
 		date.setFont(new Font("Gothic", Font.ITALIC, 35));
 		date.setBounds(165, -5, 100, 100);
 		
-		//¸ó½ºÅÍ ÀÌ¹ÌÁö Ãâ·Â
+		//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		for(i=0; i<monster.length; i++)
 			monsterLa[i]= new JLabel(monster[i]);
 		
@@ -124,7 +142,7 @@ public class JPanelOrder extends JPanel{
 		monsterLa[r_monster].setBounds(50, 95, 500, 500);
 		add(monsterLa[r_monster]);
 		
-		//Á¾·á¹öÆ°
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Æ°
 		Endbtn.setRolloverIcon(End[1]);
 		Endbtn.setBounds(1250, 10, 100, 80);
 		Endbtn.setBorderPainted(false);
@@ -138,12 +156,12 @@ public class JPanelOrder extends JPanel{
 			}
 		});
 		
-		// click ¹öÆ° ³Ö±â
+		// click ï¿½ï¿½Æ° ï¿½Ö±ï¿½
 		clickbtn.setBounds(927, 315, 130, 80);
 		clickbtn.setBorderPainted(false);
 		clickbtn.setFocusPainted(false);
 		clickbtn.setContentAreaFilled(false);
-		clickbtn.setFont(new Font("¹è´ÞÀÇ¹ÎÁ· µµÇö", Font.BOLD, 30));
+		clickbtn.setFont(new Font("ï¿½ï¿½ï¿½ï¿½Ç¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½", Font.BOLD, 30));
 		clickbtn.setForeground(Color.BLUE);
 		clickbtn.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e2) {
@@ -157,16 +175,16 @@ public class JPanelOrder extends JPanel{
 		
 	}
 	
-	public void paint(Graphics g) { // GUIÈ­¸é Áß Á¦ÀÏ Ã¹¹øÂ° È­¸éÀ» ±×·ÁÁÖ´Â ÇÔ¼ö
-		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImage¿¡ 1200X700ÀÇ ÀÌ¹ÌÁö¸¦ ³Ö¾îÁÜ
-		screenGraphic = screenImage.getGraphics(); // °Ù±×·¡ÇÈÀ» ÀÌ¿ëÇØ¼­ ½ºÅ©¸°±×·¡ÇÈÀ» ¾ò¾î¿È
-		screenDraw(screenGraphic); // screenDraw È£Ãâ
-		g.drawImage(screenImage, 0, 0, null); // screenImageÀÇ ÀÌ¹ÌÁö¸¦ (0,0)À§Ä¡¿¡ ±×·ÁÁÜ.
+	public void paint(Graphics g) { // GUIÈ­ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã¹ï¿½ï¿½Â° È­ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½
+		screenImage = createImage(Main.SCREEN_WIDTH, Main.SCREEN_HEIGHT); // ScreenImageï¿½ï¿½ 1200X700ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
+		screenGraphic = screenImage.getGraphics(); // ï¿½Ù±×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½ï¿½Ø¼ï¿½ ï¿½ï¿½Å©ï¿½ï¿½ï¿½×·ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		screenDraw(screenGraphic); // screenDraw È£ï¿½ï¿½
+		g.drawImage(screenImage, 0, 0, null); // screenImageï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ (0,0)ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½.
 	}
 
 	public void screenDraw(Graphics g) {
-		g.drawImage(Background, 0, 0, null); // BackgroundÀÇ ÀÌ¹ÌÁö¸¦ (0,0)À§Ä¡¿¡ ±×·ÁÁÜ.
-		paintComponents(g); // ÄÄÆ÷³ÍÆ® »ðÀÔ
-		this.repaint(); // ÀüÃ¼È­¸é ÀÌ¹ÌÁö¸¦ ¸Å ¼ø°£¸¶´Ù ±×·ÁÁÜ, ÇÁ·Î±×·¥ ½ÃÀÛ~Á¾·á±îÁö ¹Ýº¹µÇ¸ç È­¸é¿¡ ±×·ÁÁÜ.
+		g.drawImage(Background, 0, 0, null); // Backgroundï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ (0,0)ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½.
+		paintComponents(g); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
+		this.repaint(); // ï¿½ï¿½Ã¼È­ï¿½ï¿½ ï¿½Ì¹ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×·ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½Î±×·ï¿½ ï¿½ï¿½ï¿½ï¿½~ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ýºï¿½ï¿½Ç¸ï¿½ È­ï¿½é¿¡ ï¿½×·ï¿½ï¿½ï¿½.
 	}
 }
