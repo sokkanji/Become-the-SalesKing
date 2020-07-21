@@ -9,7 +9,7 @@ POS기를 이용한 스토리텔링 게임 : "매출왕이 되어라-!!"
 * 스토리 진행화면<br>
 <img src="https://user-images.githubusercontent.com/48242362/87907297-4dacc300-ca9f-11ea-8e83-35ab8809de73.png" width="900px"></img>
 * 주문 화면<br>
-<img src="https://www.ilovepdf.com/ko/merge_pdf"></img>
+<img src="https://user-images.githubusercontent.com/48242362/87997832-2acaef00-cb31-11ea-965d-4ed0865dba57.png"  width="900px"></img>
 * POS기 화면<br>
 <img src="https://user-images.githubusercontent.com/48242362/87907407-8d73aa80-ca9f-11ea-8544-1ece104bd540.png" width="900px"></img>
 * 재고관리 화면<br>
