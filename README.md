@@ -15,8 +15,8 @@ POS기를 이용한 스토리텔링 게임 : "매출왕이 되어라-!!"
 * 재고관리 화면<br>
 <img src="https://user-images.githubusercontent.com/48242362/87907482-b431e100-ca9f-11ea-9881-ca4f11858637.png" width="900px"></img>
 * 엔딩화면<br>
-<img src="https://user-images.githubusercontent.com/48242362/87907556-d297dc80-ca9f-11ea-86ad-a771fe6f07c2.png" width="420px"></img>
-<img src="https://user-images.githubusercontent.com/48242362/87907590-df1c3500-ca9f-11ea-9bb4-444534d1c4e1.png" width="420px"></img>
+<img src="https://user-images.githubusercontent.com/48242362/87907556-d297dc80-ca9f-11ea-86ad-a771fe6f07c2.png" width="390px"></img>
+<img src="https://user-images.githubusercontent.com/48242362/87907590-df1c3500-ca9f-11ea-9bb4-444534d1c4e1.png" width="390px"></img>
 
 ## Built With
 * JAVA
