@@ -3,7 +3,7 @@ POS기를 이용한 스토리텔링 게임 : "매출왕이 되어라-!!"
 
 ## Screenshot
 * 메인화면<br>
-<img src="https://user-images.githubusercontent.com/48242362/87907248-31108b00-ca9f-11ea-85c5-a515499f2b7e.png" width="900px"></img>
+<img src="https://user-images.githubusercontent.com/48242362/93038093-08f86f00-f67f-11ea-9018-3681e8901bb3.png" width="900px"></img>
 * 조작방법<br>
 <img src="https://user-images.githubusercontent.com/48242362/87907285-44bbf180-ca9f-11ea-911c-0c040f19a8c0.png" width="900px"></img>
 * 스토리 진행화면<br>
